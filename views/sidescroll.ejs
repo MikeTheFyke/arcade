@@ -1,32 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../styles/scrollerStyles.css" type="text/css" />
-    <link rel="stylesheet" href="../styles/indexStyles.css" type="text/css" />
+    <link rel="stylesheet" href="/public/assets/scrollerStyles.css" type="text/css" />
+    <link rel="stylesheet" href="/public/assets/indexStyles.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>MIFY SideScroller</title>
 </head>
 <body>
+
+  <div id="scrollerContainer">
+    <canvas id="scrollerCanvas" width="800px" height="450px" autofocus></canvas>
+</div>
+
+
     <div id="headContainer">
-        <a href="../index.html"><img src="../images/mify.png" id="logo"></a>
+        <a href="index"><img src="/public/images/mify.png" id="logo"></a>
     </div>
         <div id="arcadeHeader">
             <div id="myLinks">
-                <a href="../index.html">Home</a>
-                <a href="./froggerP.html">Pong</a>
-                <a href="./froggerP.html">SideScroller</a>
+                <a href="index">Home</a>
+                <a href="pong">Pong</a>
+                <a href="froggerP">Frogger</a>
             </div>
             <a href="javascript:void(0);" class="icon" onclick="hamburgerFunction()">
                 <i class="fa fa-bars"></i>
             </a>
         </div>
 
-        <div id="scrollerContainer">
-            <canvas id="scrollerCanvas" width="800px" height="450px" autofocus></canvas>
-        </div>
 
 </body>
 
+<script>
+  function hamburgerFunction () {
+    var x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+}
+</script>
 
 <script id="main">
     window.addEventListener("load", function(event) {
@@ -121,7 +134,7 @@ display.buffer.canvas.width  = game.world.width;
 display.buffer.imageSmoothingEnabled = false;
 assets_manager.requestJSON(ZONE_PREFIX + game.world.zone_id + ZONE_SUFFIX, (zone) => {
   game.world.setup(zone);
-  assets_manager.requestImage("images/amns-BG-01.png", (image) => {
+  assets_manager.requestImage("/public/images/amns-BG-01.png", (image) => {
     assets_manager.tile_set_image = image;
     resize();
     engine.start();
@@ -590,5 +603,4 @@ update:function() {
     };
 </script>
 
-<script src="../logic/headerLogic.js"></script>
 </html>

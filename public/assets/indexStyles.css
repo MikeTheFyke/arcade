@@ -1,0 +1,57 @@
+#headContainer {
+    position:Absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #80ced6;
+    width: 100vw;
+    height: 60px;
+    text-align: center;
+}
+
+#logo {
+margin: 5px;
+}
+
+#arcadeHeader {
+overflow: hidden;
+position:Absolute;
+top: 0px;
+left: 0px;
+width: 100px;
+height: 250px;
+overflow: hidden;
+}
+
+#arcadeHeader #myLinks {
+margin-top: 60px;
+display: none;
+}
+
+#arcadeHeader a {
+color: #80ced6;
+background-color: white;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
+display: block;
+}
+
+#arcadeHeader a.icon {
+background-color: white;
+color: black;
+display: block;
+position: absolute;
+left: 5px;
+top: 5px;
+border-radius: 15px;
+}
+
+#arcadeHeader a:hover {
+background-color: #ddd;
+color: black;
+}
+
+#active {
+background-color: #4CAF50;
+color: white;
+}

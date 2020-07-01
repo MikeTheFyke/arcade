@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="./styles/indexStyles.css" type="text/css" />
+    <link rel="stylesheet" href="/public/assets/indexStyles.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>MIFY Arcade</title>
 </head>
 
 <body>
     <div id="headContainer">
-        <a><img src="./images/mify.png" id="logo"></a>
+        <a><img src="/public/images/mify.png" id="logo"></a>
     </div>
     <div id="arcadeHeader">
         <div id="myLinks">
@@ -24,6 +24,15 @@
 
 </body>
 
-<script src="./logic/headerLogic.js"></script>
+<script >
+    function hamburgerFunction () {
+    var x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+}
+</script>
 
 </html>

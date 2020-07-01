@@ -1,0 +1,10 @@
+#scrollerContainer{
+    position: absolute;
+    top: 80px;
+    width: 100vw;
+    text-align: center;
+}
+
+#scrollerCanvas{
+    border-radius: 15px
+}

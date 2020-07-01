@@ -1,44 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="/public/assets/pong.css" type="text/css" />
-    <link rel="stylesheet" href="/public/assets/indexStyles.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>MIFY Pong</title>
-</head>
-<body>
-    <div id="headContainer">
-        <a href="index"><img src="/public/images/mify.png" id="logo"></a>
-    </div>
-        <div id="arcadeHeader">
-            <div id="myLinks">
-                <a href="index">Home</a>
-                <a href="froggerP">Frogger</a>
-                <a href="sidescroll">SideScroller</a>
-            </div>
-            <a href="javascript:void(0);" class="icon" onclick="hamburgerFunction()">
-                <i class="fa fa-bars"></i>
-            </a>
-        </div>
-
-        <div id="pongContainer">
-            <canvas id="pongCanvas" width="800" height="600"></canvas>
-        </div>
-</body>
-
-<script >
-function hamburgerFunction () {
-    var x = document.getElementById("myLinks");
-    if (x.style.display === "block") {
-      x.style.display = "none";
-    } else {
-      x.style.display = "block";
-    }
-}
-</script>
-
-<script >
-    var canvas;
+var canvas;
 var canvasContext;
 var ballX = 50;      // X Coordinate
 var ballY = 50;      // Y Coordinate
@@ -203,6 +163,3 @@ function colorRect(leftX,topY, width,height,drawColor) {
   canvasContext.fillStyle = drawColor;
   canvasContext.fillRect(leftX,topY,width,height);
 }
-</script>
-
-</html>
