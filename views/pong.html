@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../styles/froggerPStyles.css" type="text/css" />
+    <link rel="stylesheet" href="../styles/pong.css" type="text/css" />
     <link rel="stylesheet" href="../styles/indexStyles.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>MIFY Frogger P</title>
@@ -13,14 +13,20 @@
         <div id="arcadeHeader">
             <div id="myLinks">
                 <a href="../index.html">Home</a>
-                <a href="./pong.html">Pong</a>
-                <a href="./sidescroll.html">SideScroller</a>
+                <a href="./froggerP.html">Pong</a>
+                <a href="./froggerP.html">SideScroller</a>
             </div>
             <a href="javascript:void(0);" class="icon" onclick="hamburgerFunction()">
                 <i class="fa fa-bars"></i>
             </a>
         </div>
+
+        <div id="pongContainer">
+            <canvas id="pongCanvas" width="800" height="600"></canvas>
+        </div>
 </body>
 
 <script src="../logic/headerLogic.js"></script>
+<script src="../logic/pongLogic.js"></script>
+
 </html>
