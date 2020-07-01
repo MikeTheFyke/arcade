@@ -5,6 +5,11 @@
         background-color: #80ced6;
         width: 100vw;
         height: 60px;
+        text-align: center;
+}
+
+#logo {
+    margin: 5px;
 }
 
 #arcadeHeader {
