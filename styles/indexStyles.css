@@ -15,23 +15,23 @@
     width: 100px;
     height: 250px;
     overflow: hidden;
-  }
+}
   
-  #arcadeHeader #myLinks {
+#arcadeHeader #myLinks {
     margin-top: 60px;
     display: none;
-  }
+}
   
-  #arcadeHeader a {
+#arcadeHeader a {
     color: #80ced6;
     background-color: white;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
     display: block;
-  }
+}
   
-  #arcadeHeader a.icon {
+#arcadeHeader a.icon {
     background-color: white;
     color: black;
     display: block;
@@ -39,15 +39,15 @@
     left: 5px;
     top: 5px;
     border-radius: 15px;
-  }
+}
   
-  #arcadeHeader a:hover {
+#arcadeHeader a:hover {
     background-color: #ddd;
     color: black;
-  }
+}
 
 #active {
     background-color: #4CAF50;
     color: white;
-  }
+}
   
