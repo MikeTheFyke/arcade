@@ -170,11 +170,11 @@ function drawEverything() {
   if (showingWinScreen) {
     canvasContext.fillStyle = 'white';
     if(player1Score >= WINNING_SCORE) {
-      canvasContext.fillText("Left Player Won",340,200);
+      canvasContext.fillText("Player One Won",350,200);
     } else if(player2Score >= WINNING_SCORE) {
-      canvasContext.fillText("Right Player Won",340,200);
+      canvasContext.fillText("Jarvis Won",360,200);
     }
-    canvasContext.fillText("Click To Continue",340,500); // text,x,y
+    canvasContext.fillText("Click To Continue",350,300); // text,x,y
     return;
   }
 
@@ -185,10 +185,10 @@ function drawEverything() {
   colorCircle (ballX,ballY,10, 'white');                // Ball
 
 
-  canvasContext.fillText("Player 1 Score",100,90);
-  canvasContext.fillText(player1Score,100,100); // text,x,y
-  canvasContext.fillText("Player 2 Score",canvas.width-120,90);
-  canvasContext.fillText(player2Score,canvas.width-100,100);
+  canvasContext.fillText("Player One Score",100,90);
+  canvasContext.fillText(player1Score,140,100); // text,x,y
+  canvasContext.fillText("Jarvis' Score",canvas.width-120,90);
+  canvasContext.fillText(player2Score,canvas.width-90,100);
 }
 
 function colorCircle (centreX, centreY,radius, drawColor) {
