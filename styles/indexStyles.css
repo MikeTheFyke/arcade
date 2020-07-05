@@ -1,11 +1,11 @@
 #headContainer {
-        position:Absolute;
-        top: 0px;
-        left: 0px;
-        background-color: #80ced6;
-        width: 100vw;
-        height: 60px;
-        text-align: center;
+    position:Absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #80ced6;
+    width: 100vw;
+    height: 60px;
+    text-align: center;
 }
 
 #logo {
@@ -38,7 +38,7 @@
   
 #arcadeHeader a.icon {
     background-color: white;
-    color: black;
+    color: #80ced6;
     display: block;
     position: absolute;
     left: 5px;
@@ -48,7 +48,7 @@
   
 #arcadeHeader a:hover {
     background-color: #ddd;
-    color: black;
+    color: #80ced6;
 }
 
 #active {
