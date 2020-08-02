@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/public/assets/indexStyles.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>MIFY Arcade</title>
+</head>
+
+<body>
+    <div id="headContainer">
+        <a><img src="/public/images/mify.png" id="logo"></a>
+    </div>
+    <div id="arcadeHeader">
+        <div id="myLinks">
+            <a href="froggerP">Frogger</a>
+            <a href="pong">Pong</a>
+            <a href="sidescroll">SideScroller</a>
+            <a href="connectfour">ConnectFour</a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="hamburgerFunction()">
+            <i class="fa fa-bars" style="color:#80ced6"></i>
+        </a>
+    </div>
+
+    <div id="connectContainer">
+        <canvas id="connectCanvas" width="800" height="500"></canvas>
+    </div>
+
+
+</body>
+
+<script >
+    function hamburgerFunction () {
+    var x = document.getElementById("myLinks");
+        if (x.style.display === "block") {
+        x.style.display = "none";
+        } else {
+        x.style.display = "block";
+        }
+    }
+</script>
+
+<script>
+    var canvas;
+    var canvasContext;
+    
+    var currentPalyer = "red";
+    
+
+    function calculateMousePos(evt){      // an event fires when mouse moves
+        var rect = canvas.getBoundingClientRect();
+        var root = document.documentElement;
+        var mouseX = evt.clientX - rect.left - root.scrollLeft;
+        var mouseY = evt.clientY - rect.top - root.scrollTop;
+        return {
+            x:mouseX,   // Object Literal
+            y:mouseY    // Object Literal
+        };
+    }
+
+    function handleMouseClick(evt){
+        if(showingWinScreen) {
+            player1Score = 0;
+            player2Score = 0;
+            showingWinScreen = false;
+        }
+    }
+
+    window.onload = function() {
+        canvas = document.getElementById('connectCanvas');
+        canvasContext = canvas.getContext('2d');
+
+        var framesPerSecond = 30;
+
+        setInterval(function() {
+            moveEverything ();
+            drawEverything();
+        },1000/framesPerSecond);
+
+        canvas.addEventListener ('mousedown', handleMouseClick);
+
+        canvas.addEventListener ('mousemove',   // keypress, mouseclick, mousemove
+            function(evt) {
+            var mousePos = calculateMousePos(evt);
+            paddle1Y = mousePos.y-(PADDLE_HEIGHT/2);  
+        });
+    }
+
+    function drawEverything() {
+    colorRect(0,0,canvas.width,canvas.height, '#80ced6'); // blanks screen black
+
+    colorCircle (ballX,ballY,10, 'white'); // Ball
+    }
+
+</script>
+
+</html>
