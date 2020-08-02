@@ -159,6 +159,11 @@ app.get("/froggerP", (req, res) => {
     res.render("froggerP");
 });
 
+/// Connect Four Canvas Route
+app.get("/connectFour", (req, res) => {
+    res.render("connectFour");
+});
+
 app.get("/zone00.json", (req, res) => {
     res.json(zone00);
 });

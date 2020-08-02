@@ -1,0 +1,15 @@
+#connectContainer{
+    text-align:center;
+    margin: 20px auto;
+    background-color: white;
+    border-radius:25px;
+    width:900px;
+    height:700px;
+}
+
+#connectCanvas{
+    display:inline-block;
+    border-radius:15px;
+    margin-top: 50px;
+    cursor: none;
+}

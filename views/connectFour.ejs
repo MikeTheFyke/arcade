@@ -44,8 +44,9 @@
     var canvas;
     var canvasContext;
     
-    var currentPalyer = "red";
-    
+    var currentPalyer = "one";
+    var chipColour = "red";
+
 
     function calculateMousePos(evt){      // an event fires when mouse moves
         var rect = canvas.getBoundingClientRect();
@@ -59,10 +60,9 @@
     }
 
     function handleMouseClick(evt){
-        if(showingWinScreen) {
-            player1Score = 0;
-            player2Score = 0;
-            showingWinScreen = false;
+        if(currentPlayer = "one") {
+            chipColour = "red";
+
         }
     }
 
@@ -73,7 +73,6 @@
         var framesPerSecond = 30;
 
         setInterval(function() {
-            moveEverything ();
             drawEverything();
         },1000/framesPerSecond);
 
@@ -82,14 +81,13 @@
         canvas.addEventListener ('mousemove',   // keypress, mouseclick, mousemove
             function(evt) {
             var mousePos = calculateMousePos(evt);
-            paddle1Y = mousePos.y-(PADDLE_HEIGHT/2);  
         });
     }
 
     function drawEverything() {
-    colorRect(0,0,canvas.width,canvas.height, '#80ced6'); // blanks screen black
-
-    colorCircle (ballX,ballY,10, 'white'); // Ball
+        canvasContext.fillStyle = "blue";
+        canvasContext.fillRect(0,0,canvas.width,canvas.height);
+        canvasContext.fill();
     }
 
 </script>
