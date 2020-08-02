@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="/public/assets/indexStyles.css" type="text/css" />
+    <link rel="stylesheet" href="/public/assets/connectFour.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>MIFY Arcade</title>
 </head>
@@ -42,7 +43,10 @@
 
 <script>
     var canvas;
-    var canvasContext;
+    var c;
+
+    var chipX;
+    var chipY;
     
     var currentPalyer = "one";
     var chipColour = "red";
@@ -68,7 +72,7 @@
 
     window.onload = function() {
         canvas = document.getElementById('connectCanvas');
-        canvasContext = canvas.getContext('2d');
+        c = canvas.getContext('2d');
 
         var framesPerSecond = 30;
 
@@ -81,13 +85,25 @@
         canvas.addEventListener ('mousemove',   // keypress, mouseclick, mousemove
             function(evt) {
             var mousePos = calculateMousePos(evt);
+            chipX = mousePos.x;
+            chipY = mousePos.y;
         });
     }
 
     function drawEverything() {
-        canvasContext.fillStyle = "blue";
-        canvasContext.fillRect(0,0,canvas.width,canvas.height);
-        canvasContext.fill();
+        c.fillStyle = "blue";
+        c.fillRect(0,0,canvas.width,canvas.height);
+        c.fill();
+
+        drawChip ();
+    }
+
+    function drawChip () {
+        console.log("drawingchip");
+        c.fillstyle = "red";
+        c.beginPath();
+        c.arc(chipX,chipY,50,0,Math.PI*2,true);
+        c.fill();
     }
 
 </script>
