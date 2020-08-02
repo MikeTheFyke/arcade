@@ -65,8 +65,12 @@
 
     function handleMouseClick(evt){
         if(currentPlayer = "one") {
-            chipColour = "red";
-
+            for ( y = 0; y <= 400; y ++) {
+            c.fillStyle = "red";
+            c.beginPath();
+            c.arc(chipX,chipY + y,40,0,Math.PI*2,true);
+            c.fill();
+            }
         }
     }
 
@@ -112,7 +116,7 @@
         if (chipY >= 400) {
             chipY = 400;
         }
-        
+
         console.log("drawingchip " + chipColour);
         c.fillStyle = "red";
         c.beginPath();
