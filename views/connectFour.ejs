@@ -99,10 +99,24 @@
     }
 
     function drawChip () {
-        console.log("drawingchip");
-        c.fillstyle = "red";
+
+        if (chipX <= 100) {
+            chipX = 100;
+        }
+        if (chipX >= 700) {
+            chipX = 700;
+        }
+        if (chipY <= 60) {
+            chipY = 60;
+        }
+        if (chipY >= 400) {
+            chipY = 400;
+        }
+        
+        console.log("drawingchip " + chipColour);
+        c.fillStyle = "red";
         c.beginPath();
-        c.arc(chipX,chipY,50,0,Math.PI*2,true);
+        c.arc(chipX,chipY,40,0,Math.PI*2,true);
         c.fill();
     }
 
