@@ -64,11 +64,12 @@
     }
 
     function handleMouseClick(evt){
+        var speed = 100;
         if(currentPlayer = "one") {
             for ( y = 0; y <= 400; y ++) {
             c.fillStyle = "red";
             c.beginPath();
-            c.arc(chipX,chipY + y,40,0,Math.PI*2,true);
+            c.arc(chipX,chipY + ((speed * y) / 30),40,0,Math.PI*2,true);
             c.fill();
             }
         }
