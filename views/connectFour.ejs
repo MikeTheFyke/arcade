@@ -51,7 +51,7 @@
     var currentPalyer = "one";
     var chipColour = "red";
 
-    var chipSpeed = 10;
+    var chipSpeed = 100;
 
 
     function calculateMousePos(evt){      // an event fires when mouse moves
@@ -66,12 +66,11 @@
     }
 
     function handleMouseClick(evt){
-        var speed = 100;
         if(currentPlayer = "one") {
             for ( y = 0; y <= 400; y ++) {
             c.fillStyle = "red";
             c.beginPath();
-            c.arc(chipX,chipY + ((speed * y) / 30),40,0,Math.PI*2,true);
+            c.arc(chipX,chipY + ((chipSpeed * y) / 30),40,0,Math.PI*2,true);
             c.fill();
             }
         }
@@ -98,7 +97,7 @@
     }
 
     function drawEverything() {
-        c.fillStyle = "blue";
+        c.fillStyle = '#80ced6';
         c.fillRect(0,0,canvas.width,canvas.height);
         c.fill();
 
