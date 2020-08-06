@@ -48,10 +48,10 @@
     var chipX;
     var chipY;
     
-    var currentPalyer = "one";
+    var currentPlayer = "one";
     var chipColour = "red";
 
-    var chipSpeed = 10;
+    var chipSpeed = 300;
 
 
     function calculateMousePos(evt){      // an event fires when mouse moves
@@ -68,22 +68,26 @@
 
     function handleMouseClick(evt){
         if(currentPlayer = "one") {
-            for ( y = 0; y <= 400; y ++) {
+            for ( y = 0; y <= 1000; y ++) {
+            chipY += 100 / chipSpeed;
             c.fillStyle = "red";
             c.beginPath();
-            c.arc(chipX,chipY + ((chipSpeed * y) / 30),40,0,Math.PI*2,true);
+            c.arc(chipX,chipY,40,0,Math.PI*2,true);
             c.fill();
             }
             currentPlayer = "two";
+            console.log("The current player is : " + currentPlayer);
         }
         if(currentPlayer = "two") {
-            for ( y = 0; y <= 400; y ++) {
+            for ( y = 0; y <= 1000; y ++) {
+            chipY += 100 / chipSpeed;
             c.fillStyle = "black";
             c.beginPath();
-            c.arc(chipX,chipY + ((chipSpeed * y) / 30),40,0,Math.PI*2,true);
+            c.arc(chipX,chipY,40,0,Math.PI*2,true);
             c.fill();
             }
             currentPlayer = "one";
+            console.log("The current player is : " + currentPlayer);
         }
     }
 
@@ -93,6 +97,8 @@
         c = canvas.getContext('2d');
 
         var framesPerSecond = 30;
+
+        console.log("The current player to start is :  " + currentPlayer);
 
         setInterval(function() {
             drawEverything();
@@ -131,7 +137,7 @@
             chipY = 400;
         }
 
-        console.log("drawingchip " + chipColour);
+
         c.fillStyle = "red";
         c.beginPath();
         c.arc(chipX,chipY,40,0,Math.PI*2,true);
