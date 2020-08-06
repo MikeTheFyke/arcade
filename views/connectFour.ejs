@@ -64,6 +64,7 @@
             y:mouseY    // Object Literal
         };
     }
+    
 
     function handleMouseClick(evt){
         if(currentPlayer = "one") {
@@ -73,6 +74,16 @@
             c.arc(chipX,chipY + ((chipSpeed * y) / 30),40,0,Math.PI*2,true);
             c.fill();
             }
+            currentPlayer = "two";
+        }
+        if(currentPlayer = "two") {
+            for ( y = 0; y <= 400; y ++) {
+            c.fillStyle = "black";
+            c.beginPath();
+            c.arc(chipX,chipY + ((chipSpeed * y) / 30),40,0,Math.PI*2,true);
+            c.fill();
+            }
+            currentPlayer = "one";
         }
     }
 
