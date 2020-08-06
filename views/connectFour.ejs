@@ -67,8 +67,16 @@
     
 
     function handleMouseClick(evt){
+        if(currentPlayer = "two") {
+            playerTwoMove();
+        }
         if(currentPlayer = "one") {
-            for ( y = 0; y <= 1000; y ++) {
+            playerOneMove();
+        }
+    }
+
+    function playerOneMove(){
+        for ( y = 0; y <= 1000; y ++) {
             chipY += 100 / chipSpeed;
             c.fillStyle = "red";
             c.beginPath();
@@ -77,8 +85,9 @@
             }
             currentPlayer = "two";
             console.log("The current player is : " + currentPlayer);
-        }
-        if(currentPlayer = "two") {
+    }
+
+    function playerTwoMove(){
             for ( y = 0; y <= 1000; y ++) {
             chipY += 100 / chipSpeed;
             c.fillStyle = "black";
@@ -86,11 +95,9 @@
             c.arc(chipX,chipY,40,0,Math.PI*2,true);
             c.fill();
             }
-            currentPlayer = "one";
-            console.log("The current player is : " + currentPlayer);
-        }
+        currentPlayer = "one";
+        console.log("The current player is : " + currentPlayer);
     }
-
 
     window.onload = function() {
         canvas = document.getElementById('connectCanvas');
