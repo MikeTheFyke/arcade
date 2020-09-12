@@ -31,8 +31,27 @@ window.onload = function() {
 }
 
 function drawGame() {
-    if (ctx==null) {
+    if (ctx == null) {
         return;
     }
-    
+     var sec = Math.round(Date.now()/1000);
+     if (sec!= currentSecond){
+         currentSecond = sec;
+         framesLastSecond = frameCount;
+         frameCount = 1;
+     } else {
+         frameCount++;
+     }
+
+     for (var y = 0; y < mapH; y++){ // y corresponds to Y coordinate on map
+         for (var x = 0; x < mapW; x++){ // x corresponds to X coordinate on map
+             switch(gameMap[((y*mapW)+x)]){
+                 case 0: ctx.fillStyle = "#999999";
+                    break;
+                default: ctx.fillStyle = "#eeeeee";
+             }
+             ctx.fillRect(x*tileW, y*tileH, tileW, tileH);
+
+         }
+     }
 }
