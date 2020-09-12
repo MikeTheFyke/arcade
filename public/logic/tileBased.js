@@ -54,4 +54,8 @@ function drawGame() {
 
          }
      }
+     ctx.fillStyle = "#ff0000";
+     ctx.fillText("FPS: " + framesLastSecond, 10, 20);
+
+     requestAnimationFrame(drawGame);
 }
