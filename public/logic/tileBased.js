@@ -1,5 +1,4 @@
-var canvas = document.getElementById('tileBasedCanvas');
-var ctx = canvas.getContext('2d');
+var ctx = null;
 
 var tileW = 40;
 var tileH = 40;
@@ -23,3 +22,17 @@ var gameMap = [ // Tile 0 barrier, Tile 1 path
                 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, // Row 9
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  // Row 10
 ];
+
+window.onload = function() {
+    var canvas = document.getElementById('tileBasedCanvas');
+    ctx = canvas.getContext('2d');
+    requestAnimationFrame(drawGame);
+    ctx.font = " bold 10pt sans-serif";
+}
+
+function drawGame() {
+    if (ctx==null) {
+        return;
+    }
+    
+}
