@@ -18,7 +18,7 @@ var keysDown = {
     40: false
 };
 
-var player = new CharacterData();
+var player = new Character();
 
 var gameMap = [ // Tile 0 barrier, Tile 1 path
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // Row 1
@@ -63,8 +63,8 @@ Character.prototype.processMovement = function (t){
             this.position[0] += (this.tileTo[0] < this.tileFrom[0] ? 0 - diff : diff);
         }
         if (this.tileTo[1] != this.tileFrom[1]){
-            var diff = (thisH / this.delayMove) * (t - this.timeMoved);
-            this.position[1] += (this.tileTO[1] < this.tileFrom[1] ? 0 - diff : diff);
+            var diff = (tileH / this.delayMove) * (t - this.timeMoved);
+            this.position[1] += (this.tileTo[1] < this.tileFrom[1] ? 0 - diff : diff);
         }
         this.position[0] = Math.round(this.position[0]);
         this.position[1] = Math.round(this.position[1]);
@@ -146,5 +146,6 @@ function drawGame() {
      ctx.fillStyle = "#ff0000";
      ctx.fillText("FPS : " + framesLastSecond, 10, 20);
 
+     lastFrameTime = currentFrameTime;
      requestAnimationFrame(drawGame);
 }
