@@ -45,6 +45,8 @@ function Character(){
 Character.prototype.placeAt = function (x, y){ // Character initial display coordinates
     this.tileFrom = [x,y];
     this.tileTo = [x,y];
+    this.position = [((tileW*x) + ((tileW - this.dimensions[0]) / 2)),
+                     ((tileH*y) + ((tileH - this.dimensions[1]) /2))];
 }
 
 window.onload = function() {
