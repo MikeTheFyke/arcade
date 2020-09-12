@@ -9,6 +9,16 @@ var mapH = 10;
 var currentSecond = 0;
 var frameCount = 0;
 var framesLastSecond = 0;
+var lastFrameTime = 0;
+
+var keysDown = {
+    37: false,
+    38: false,
+    39: false,
+    40: false
+};
+
+var player = new CharacterData();
 
 var gameMap = [ // Tile 0 barrier, Tile 1 path
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // Row 1
