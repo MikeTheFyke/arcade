@@ -27,21 +27,20 @@ window.onload = function() {
     var canvas = document.getElementById('tileBasedCanvas');
     ctx = canvas.getContext('2d');
     requestAnimationFrame(drawGame);
-    ctx.font = " bold 10pt sans-serif";
+    ctx.font = "bold 10pt sans-serif";
 }
 
 function drawGame() {
     if (ctx == null) {
         return;
     }
-     var sec = Math.round(Date.now()/1000);
+     var sec = Math.floor(Date.now()/1000);
      if (sec!=currentSecond){
          currentSecond = sec;
          framesLastSecond = frameCount;
          frameCount = 1;
      } else {
          frameCount++;
-         console.log(framesLastSecond);
      }
 
      for (var y = 0; y < mapH; y++){ // y corresponds to Y coordinate on map
