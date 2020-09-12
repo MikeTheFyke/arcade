@@ -60,17 +60,40 @@ Character.prototype.processMovement = function (t){
         this.position[1] = (this.tileFrom[1] * tileH) + ((tileH - this.dimensions[1]) / 2); // Y
         if (this.tileTo[0] != this.tileFrom[0]){
             var diff = (tileW / this.delayMove) * (t - this.timeMoved);
-            this.position[0] += (this.tileTo[0] < this.tileFrom[0] ? 0 - diff : diff)
+            this.position[0] += (this.tileTo[0] < this.tileFrom[0] ? 0 - diff : diff);
         }
+        if (this.tileTo[1] != this.tileFrom[1]){
+            var diff = (thisH / this.delayMove) * (t - this.timeMoved);
+            this.position[1] += (this.tileTO[1] < this.tileFrom[1] ? 0 - diff : diff);
+        }
+        this.position[0] = Math.round(this.position[0]);
+        this.position[1] = Math.round(this.position[1]);
     }
-}
+    return true;
+};
+
+function toIndex(x, y){
+    return ((y * mapW) + x);
+};
 
 window.onload = function() {
     var canvas = document.getElementById('tileBasedCanvas');
     ctx = canvas.getContext('2d');
     requestAnimationFrame(drawGame);
     ctx.font = "bold 10pt sans-serif";
-}
+
+    window.addEventListener("keydown", function (e) {
+        if (e.keyCode >= 37 && e.keyCode <= 40){
+            keysDown[e.keyCode] = true;
+        }
+    });
+
+    window.addEventListener("keyup", function (e){
+        if (e.keyCode >= 37 && e.keyCode <= 40){
+            keysDown[e.keyCode] = false;
+        }
+    });
+};
 
 function drawGame() {
     if (ctx == null) {
