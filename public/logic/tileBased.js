@@ -46,7 +46,19 @@ Character.prototype.placeAt = function (x, y){ // Character initial display coor
     this.tileFrom = [x,y];
     this.tileTo = [x,y];
     this.position = [((tileW*x) + ((tileW - this.dimensions[0]) / 2)),
-                     ((tileH*y) + ((tileH - this.dimensions[1]) /2))];
+                     ((tileH*y) + ((tileH - this.dimensions[1]) / 2))];    
+}
+
+Character.prototype.processMovement = function (t){
+    if (this.tileFrom[0] == this.tileTo[0] && this.tileFrom[1] == this.tileTo[1]){
+        return false;
+    } 
+    if ((t-this.timeMoved)>=this.delayMove){
+        this.placeAt(this.tileTo[0], this.tileTo[1]);
+    } else {
+        this.position[0] = (this.tileFrom[0] * tileW) + ((tileW - this.dimensions[0]) / 2);
+        this.position[1] = (this.tileFrom[1] * tileH) + ((tileH - this.dimensions[1]) / 2);
+    }
 }
 
 window.onload = function() {
