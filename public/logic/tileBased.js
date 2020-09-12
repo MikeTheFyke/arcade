@@ -33,6 +33,20 @@ var gameMap = [ // Tile 0 barrier, Tile 1 path
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  // Row 10
 ];
 
+function Character(){
+    this.tileFrom = [1,1];
+    this.tileTo =  [1,1];
+    this.timeMoved = 0;
+    this.dimensions = [30,30];
+    this.position = [45,45]; // relative to top x coordinate of map
+    this.delayMove = 700;
+}
+
+Character.prototype.placeAt = function (x, y){ // Character initial display coordinates
+    this.tileFrom = [x,y];
+    this.tileTo = [x,y];
+}
+
 window.onload = function() {
     var canvas = document.getElementById('tileBasedCanvas');
     ctx = canvas.getContext('2d');
