@@ -139,6 +139,10 @@ function drawGame() {
 
          }
      }
+
+     ctx.fillStyle = "#0000ff"; // Draw Player
+     ctx.fillRect(player.position[0], player.position[1], player.dimensions[0], player.dimensions[1]);
+
      ctx.fillStyle = "#ff0000";
      ctx.fillText("FPS : " + framesLastSecond, 10, 20);
 
