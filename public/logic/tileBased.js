@@ -35,27 +35,28 @@ function drawGame() {
         return;
     }
      var sec = Math.round(Date.now()/1000);
-     if (sec!= currentSecond){
+     if (sec!=currentSecond){
          currentSecond = sec;
          framesLastSecond = frameCount;
          frameCount = 1;
      } else {
          frameCount++;
+         console.log(framesLastSecond);
      }
 
      for (var y = 0; y < mapH; y++){ // y corresponds to Y coordinate on map
          for (var x = 0; x < mapW; x++){ // x corresponds to X coordinate on map
              switch(gameMap[((y*mapW)+x)]){
-                 case 0: ctx.fillStyle = "#999999";
+                 case 0: ctx.fillStyle = "#A0522D";
                     break;
-                default: ctx.fillStyle = "#eeeeee";
+                default: ctx.fillStyle = "#ccffcc";
              }
              ctx.fillRect(x*tileW, y*tileH, tileW, tileH);
 
          }
      }
      ctx.fillStyle = "#ff0000";
-     ctx.fillText("FPS: " + framesLastSecond, 10, 20);
+     ctx.fillText("Time : " + framesLastSecond, 10, 20);
 
      requestAnimationFrame(drawGame);
 }
