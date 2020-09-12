@@ -164,6 +164,11 @@ app.get("/connectFour", (req, res) => {
     res.render("connectFour");
 });
 
+/// Tile Based Canvas Route
+app.get("/tileBased", (req, res) => {
+    res.render("tileBased");
+});
+
 app.get("/zone00.json", (req, res) => {
     res.json(zone00);
 });
