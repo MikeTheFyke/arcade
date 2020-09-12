@@ -12,11 +12,11 @@
     </div>
     <div id="arcadeHeader">
         <div id="myLinks">
+            <a href="tileBased">TileBased</a>
             <a href="froggerP">Frogger</a>
             <a href="pong">Pong</a>
             <a href="sidescroll">SideScroller</a>
             <a href="connectfour">ConnectFour</a>
-            <a href="tileBased">TileBased</a>
         </div>
         <a href="javascript:void(0);" class="icon" onclick="hamburgerFunction()">
             <i class="fa fa-bars" style="color:#80ced6"></i>
@@ -26,15 +26,6 @@
 
 </body>
 
-<script >
-    function hamburgerFunction () {
-    var x = document.getElementById("myLinks");
-    if (x.style.display === "block") {
-      x.style.display = "none";
-    } else {
-      x.style.display = "block";
-    }
-}
-</script>
+<script src="./public/logic/headerLogic.js"></script>
 
 </html>
