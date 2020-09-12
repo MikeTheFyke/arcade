@@ -7,21 +7,7 @@
     <title>MIFY Frogger P</title>
 </head>
 <body>
-    <div id="headContainer">
-        <a href="index"><img src="/public/images/mify.png" id="logo"></a>
-    </div>
-        <div id="arcadeHeader">
-            <div id="myLinks">
-                <a href="index">Home</a>
-                <a href="pong">Pong</a>
-                <a href="sidescroll">SideScroller</a>
-                <a href="connectfour">ConnectFour</a>
-                <a href="tileBased">TileBased</a>
-            </div>
-            <a href="javascript:void(0);" class="icon" onclick="hamburgerFunction()">
-                <i class="fa fa-bars" style="color:#80ced6"></i>
-            </a>
-        </div>
+    <%- include ('partials/_header.ejs') %>
 </body>
 
 <script src="./public/logic/headerLogic.js"></script>
