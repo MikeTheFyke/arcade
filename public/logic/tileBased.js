@@ -99,6 +99,10 @@ function drawGame() {
     if (ctx == null) {
         return;
     }
+
+    var currentFrameTime = Date.now();
+    var timeElapsed = currentFrameTime - lastFrameTime;
+
      var sec = Math.floor(Date.now()/1000);
      if (sec!=currentSecond){
          currentSecond = sec;
@@ -106,6 +110,22 @@ function drawGame() {
          frameCount = 1;
      } else {
          frameCount++;
+     }
+
+     if (!player.processMovement (currentFrameTime)){ // check if key is pressed and which way to move & moveTo Tile is moveable 1 of not 0
+        if(keysDown[38] && player.tileFrom[1] > 0 && gameMap[toIndex(player.tileFrom[0], player.tileFrom[1]-1)] == 1){
+            player.tileTo[1] -= 1; // Up Key / Movement
+        } else if (keysDown[40] && player.tileFrom[1] < (mapH-1) && gameMap[toIndex(player.tileFrom[0], player.tileFrom[1]+1)] == 1){
+            player.tileTo[1] += 1; // Down Key / Movement
+        } else if(keysDown[37] && player.tileFrom[0] > 0 && gameMap[toIndex(player.tileFrom[0] - 1, player.tileFrom[1])] == 1){
+            player.tileTo[0] -= 1; // Left Key / Movement
+        } else if (keysDown[39] && player.tileFrom[0] < (mapW-1) && gameMap[toIndex(player.tileFrom[0] + 1, player.tileFrom[1])] == 1){
+            player.tileTo[0] += 1; // Right Key / Movement
+        }
+
+        if (player.tileFrom[0] != player.tileTo[0] || player.tileFrom[1] != player.tileTo[1]){
+            player.timeMoved = currentFrameTime;
+        }
      }
 
      for (var y = 0; y < mapH; y++){ // y corresponds to Y coordinate on map
