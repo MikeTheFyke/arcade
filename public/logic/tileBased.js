@@ -44,6 +44,20 @@ var gameMap = [ // Tile 0 barrier, Tile 1 path, Tile 2 water
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  // Row 20
 ];
 
+var floorTypes = {
+    solid : 0,
+    path  : 1,
+    water : 2
+};
+
+var tileTypes = {
+    0 : {color: "#685b48", floor:floorTypes.solid},
+    1 : {color: "#5aa457", floor:floorTypes.path},
+    2 : {color: "#e8bd7a", floor:floorTypes.path},
+    3 : {color: "#286625", floor:floorTypes.solid},
+    4 : {color: "#678fd9", floor:floorTypes.water}
+};
+
 var viewport = { // This Object will help to decide what will be viewable to the player
     screen : [0,0],
     startTile : [0,0],
