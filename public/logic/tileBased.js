@@ -229,9 +229,9 @@ function drawGame() {
         } else if(keysDown[40] && player.canMoveDown()){
             player.moveDown(currentFrameTime);
         } else if(keysDown[37] && player.canMoveLeft()){
-            player.moveDown(currentFrameTime);
+            player.moveLeft(currentFrameTime);
         } else if(keysDown[39] && player.canMoveRight()){
-            player.moveDown(currentFrameTime);
+            player.moveRight(currentFrameTime);
         }
      }
 
@@ -244,11 +244,8 @@ function drawGame() {
 
      for (var y = viewport.startTile[1]; y <= viewport.endTile[1]; y++){ // y corresponds to Y coordinate on map
          for (var x = viewport.startTile[0]; x <= viewport.endTile[0]; x++){ // x corresponds to X coordinate on map
-             switch(gameMap[((y*mapW)+x)]){
-                 case 0: ctx.fillStyle = "#A0522D";
-                    break;
-                default: ctx.fillStyle = "#ccffcc";
-             }
+             ctx.fillStyle = tileTypes[gameMap[toIndex(x, y)]].color;
+
              ctx.fillRect(viewport.offset[0] + x*tileW, viewport.offset[1] + y*tileH, tileW, tileH);
          }
      }
