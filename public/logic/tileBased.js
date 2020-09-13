@@ -138,6 +138,12 @@ window.onload = function() {
             keysDown[e.keyCode] = false;
         }
     });
+
+    viewport.screen = [
+        document.getElementById('tileBasedCanvas').width,
+        document.getElementById('tileBasedCanvas').height,
+    ]
+
 };
 
 function drawGame() {
