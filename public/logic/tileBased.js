@@ -186,14 +186,14 @@ function drawGame() {
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, viewport.sreen[0], viewport[1]);
 
-     for (var y = 0; y < mapH; y++){ // y corresponds to Y coordinate on map
-         for (var x = 0; x < mapW; x++){ // x corresponds to X coordinate on map
+     for (var y = viewport.startTile[1]; y <= viewport.endTile[1]; y++){ // y corresponds to Y coordinate on map
+         for (var x = viewport.startTile[0]; x <= viewport.endTile[0]; x++){ // x corresponds to X coordinate on map
              switch(gameMap[((y*mapW)+x)]){
                  case 0: ctx.fillStyle = "#A0522D";
                     break;
                 default: ctx.fillStyle = "#ccffcc";
              }
-             ctx.fillRect(x*tileW, y*tileH, tileW, tileH);
+             ctx.fillRect(viewport.offset[0] + x*tileW, viewport.offset[1] + y*tileH, tileW, tileH);
 
          }
      }
