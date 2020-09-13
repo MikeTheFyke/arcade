@@ -183,6 +183,9 @@ function drawGame() {
                      player.position[1] + (player.dimensions[1]/2)
                     );
 
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(0, 0, viewport.sreen[0], viewport[1]);
+
      for (var y = 0; y < mapH; y++){ // y corresponds to Y coordinate on map
          for (var x = 0; x < mapW; x++){ // x corresponds to X coordinate on map
              switch(gameMap[((y*mapW)+x)]){
