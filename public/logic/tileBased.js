@@ -141,8 +141,8 @@ window.onload = function() {
 
     viewport.screen = [
         document.getElementById('tileBasedCanvas').width,
-        document.getElementById('tileBasedCanvas').height,
-    ]
+        document.getElementById('tileBasedCanvas').height
+    ];
 
 };
 
@@ -178,6 +178,10 @@ function drawGame() {
             player.timeMoved = currentFrameTime;
         }
      }
+
+     viewport.update(player.position[0] + (player.dimensions[0]/2),
+                     player.position[1] + (player.dimensions[1]/2)
+                    );
 
      for (var y = 0; y < mapH; y++){ // y corresponds to Y coordinate on map
          for (var x = 0; x < mapW; x++){ // x corresponds to X coordinate on map
