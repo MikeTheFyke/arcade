@@ -157,6 +157,26 @@ Character.prototype.canMoveRight = function (){
     return this.canMoveTo(this.tileFrom[0] + 1, this.tileFrom[1]); 
 };
 
+Character.prototype.moveLeft = function (t){
+    this.tileTo[0] -= 1;
+    this.timeMoved = t;
+};
+
+Character.prototype.moveRight = function (t){
+    this.tileTo[0] += 1;
+    this.timeMoved = t;
+};
+
+Character.prototype.moveUp = function (t){
+    this.tileTo[1] -= 1;
+    this.timeMoved = t;
+}
+
+Character.prototype.moveDown = function (t){
+    this.tileTo[1] += 1;
+    this.timeMoved = t;
+}
+
 function toIndex(x, y){
     return ((y * mapW) + x);
 };
