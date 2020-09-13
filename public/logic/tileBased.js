@@ -139,7 +139,23 @@ Character.prototype.canMoveTo = function (x, y){
         return false;
     }
     return true;
-}
+};
+
+Character.prototype.canMoveUp = function (){
+    return this.canMoveTo(this.tileFrom[0], this.tileFrom[1] - 1); 
+};
+
+Character.prototype.canMoveDown = function (){
+    return this.canMoveTo(this.tileFrom[0], this.tileFrom[1] + 1); 
+};
+
+Character.prototype.canMoveLeft = function (){
+    return this.canMoveTo(this.tileFrom[0] - 1, this.tileFrom[1]); 
+};
+
+Character.prototype.canMoveRight = function (){
+    return this.canMoveTo(this.tileFrom[0] + 1, this.tileFrom[1]); 
+};
 
 function toIndex(x, y){
     return ((y * mapW) + x);
