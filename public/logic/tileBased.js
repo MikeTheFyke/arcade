@@ -131,6 +131,16 @@ Character.prototype.processMovement = function (t){
     return true;
 };
 
+Character.prototype.canMoveTo = function (x, y){
+    if (x < 0 || x >= mapW || y < 0 || y >= mapH ) {
+        return false;
+    }
+    if (tileTypes[gameMap[toIndex(x, y)]].floor != floorTypes.path) {
+        return false;
+    }
+    return true;
+}
+
 function toIndex(x, y){
     return ((y * mapW) + x);
 };
