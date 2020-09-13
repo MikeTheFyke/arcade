@@ -184,7 +184,7 @@ function drawGame() {
                     );
 
     ctx.fillStyle = "#000000";
-    ctx.fillRect(0, 0, viewport.sreen[0], viewport[1]);
+    ctx.fillRect(0, 0, viewport.screen[0], viewport.screen[1]);
 
      for (var y = viewport.startTile[1]; y <= viewport.endTile[1]; y++){ // y corresponds to Y coordinate on map
          for (var x = viewport.startTile[0]; x <= viewport.endTile[0]; x++){ // x corresponds to X coordinate on map
