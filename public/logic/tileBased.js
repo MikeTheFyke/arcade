@@ -242,6 +242,16 @@ window.onload = function() {
     
     for (x in tileTypes){
         tileTypes[x]['animated'] = tileTypes[x].sprite.length > 1 ? true : false;
+        if(tileTypes[x].animated){
+            var t = 0;
+            for (s in tileTypes[x].sprite){
+                tileTypes[x].sprite[s]['start'] = t;
+
+                t+= tileTypes[x].sprite[s].d;
+                tileTypes[x].sprite[s]['end'] = t;
+            }
+            tileTypes[x]['spriteDuration'] = t;
+        }
     }
 
 
