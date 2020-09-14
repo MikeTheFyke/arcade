@@ -255,7 +255,7 @@ window.onload = function() {
     };
 };
 
-function getFrame(sprite, duration, time, aniamted){
+function getFrame(sprite, duration, time, animated){
     if (!animated){
         return sprite[0]; // If no animation associated with sprite load index 0 of sprite
     }
@@ -265,7 +265,7 @@ function getFrame(sprite, duration, time, aniamted){
             return sprite[x];
         };
     };
-}
+};
 
 function drawGame() {
     if (ctx == null) {
@@ -310,8 +310,10 @@ function drawGame() {
      for (var y = viewport.startTile[1]; y <= viewport.endTile[1]; y++){ // y corresponds to Y coordinate on map
          for (var x = viewport.startTile[0]; x <= viewport.endTile[0]; x++){ // x corresponds to X coordinate on map
             var tile = tileTypes[gameMap[toIndex(x,y)]];
-            ctx.drawImage(tileSet, tile.sprite[0].x, tile.sprite[0].y, tile.sprite[0].w, tile.sprite[0].h,
-                          viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
+            // ctx.drawImage(tileSet, tile.sprite[0].x, tile.sprite[0].y, tile.sprite[0].w, tile.sprite[0].h,
+            //               viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
+            var sprite = getFrame(tile.sprite, tile.spriteDuration, currentFrameTime, tile.animated);
+            ctx.drawImage(tileSet, sprite.x, sprite.y, sprite.w, sprite.h, viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
          }
      }
 
