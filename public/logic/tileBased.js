@@ -226,10 +226,24 @@ window.onload = function() {
         document.getElementById('tileBasedCanvas').height
     ];
 
+    tileSet = new Image();
+    tileSet.onerror = function (){
+        ctx = null;
+        alert("Failed loading tileset.");
+    };
+    tileSet.onload = function() {
+        tileSetLoaded = true;
+        tileSet.src = tileSetURL;
+    }
+
 };
 
 function drawGame() {
     if (ctx == null) {
+        return;
+    }
+    if (!tileSetLoaded) {
+        requestAnimationFrame(drawGame);
         return;
     }
 
