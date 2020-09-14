@@ -63,9 +63,15 @@ var gameMap = [ // Map 07 - Tile 0 & 3 barriers, Tile 1 & 2 paths, Tile 4 water
 ];
 
 var floorTypes = {
-    solid : 0,
-    path  : 1,
-    water : 2
+    solid     : 0,
+    path      : 1,
+    water     : 2,
+    ice       : 3,
+    conveyorU : 4, // Conveyor Up
+    conveyorD : 5, // Conveyor Down
+    conveyorL : 6, // Conveyor Left
+    conveyorR : 7  // Conveyor Right
+
 };
 
 var tileTypes = {
