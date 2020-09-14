@@ -178,21 +178,25 @@ Character.prototype.canMoveRight = function (){
 Character.prototype.moveLeft = function (t){
     this.tileTo[0] -= 1;
     this.timeMoved = t;
+    this.direction = directions.left;
 };
 
 Character.prototype.moveRight = function (t){
     this.tileTo[0] += 1;
     this.timeMoved = t;
+    this.direction = directions.right;
 };
 
 Character.prototype.moveUp = function (t){
     this.tileTo[1] -= 1;
     this.timeMoved = t;
+    this.direction = directions.up;
 }
 
 Character.prototype.moveDown = function (t){
     this.tileTo[1] += 1;
     this.timeMoved = t;
+    this.direction = directions.down;
 }
 
 function toIndex(x, y){
