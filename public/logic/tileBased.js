@@ -110,7 +110,7 @@ function Character(){
     this.dimensions = [30,30];
     this.position = [45,45]; // relative to top x coordinate of map
     this.delayMove = 700;
-    this.direction = directions.up
+    this.direction = directions.up;
 
     this.sprites = {};
     this.sprites[directions.up]       = [{x:0, y:120, w:30, h:30}];
@@ -280,14 +280,19 @@ function drawGame() {
 
      for (var y = viewport.startTile[1]; y <= viewport.endTile[1]; y++){ // y corresponds to Y coordinate on map
          for (var x = viewport.startTile[0]; x <= viewport.endTile[0]; x++){ // x corresponds to X coordinate on map
-             ctx.fillStyle = tileTypes[gameMap[toIndex(x, y)]].color;
-
-             ctx.fillRect(viewport.offset[0] + x*tileW, viewport.offset[1] + y*tileH, tileW, tileH);
+            var tile = tileTypes[gameMap[toIndex(x,y)]];
+            ctx.drawImage(tileSet, tile.sprite[0].x, tile.sprite[0].y, tile.sprite[0].w, tile.sprite[0].h,
+                          viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
          }
      }
 
-     ctx.fillStyle = "#0000ff"; // Draw Player
-     ctx.fillRect(viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1], player.dimensions[0], player.dimensions[1]);
+    //  ctx.fillStyle = "#0000ff"; // Draw Player
+    //  ctx.fillRect(viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1], player.dimensions[0], player.dimensions[1]);
+
+    var sprite = player.sprite[player.direction]; // new Draw Player with sprite sheet
+    ctx.drawImage(tileSet, sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h, 
+                  viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1],
+                  player.dimensions[0], player.dimensions[1]);
 
      ctx.fillStyle = "#ff0000";
      ctx.fillText("FPS : " + framesLastSecond, 10, 20);
