@@ -177,6 +177,23 @@ Character.prototype.processMovement = function (t){
     } 
     if ((t-this.timeMoved)>=this.delayMove){
         this.placeAt(this.tileTo[0], this.tileTo[1]);
+        
+        var tileFloor = tileTypes[gameMap][toIndex(this.tileFrom[0], this.tileFrom[1])].floor; // Ice and Conveyor Movement
+            if (tileFloor == floorTypes.ice){
+                if (this.canMoveDirection(this.direction)){
+                    this.moveDirection(this.direction, t);
+                }
+            }    
+            else if (tileFloor == floorTypes.conveyorL && this.canMoveLeft()){
+                this.moveLeft(t);
+            } else if (tileFloor == floorTypes.conveyorR && this.canMoveRight()){
+                this.moveRight(t);
+            } else if (tileFloor == floorTypes.conveyorU && this.canMoveUp()){
+                this.moveUp(t);
+            } else if (tileFloor == floorTypes.conveyorD && this.canMoveDown()){
+                this.moveDown(t);
+            }
+
     } else {
         this.position[0] = (this.tileFrom[0] * tileW) + ((tileW - this.dimensions[0]) / 2); // X
         this.position[1] = (this.tileFrom[1] * tileH) + ((tileH - this.dimensions[1]) / 2); // Y
