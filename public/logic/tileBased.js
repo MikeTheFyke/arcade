@@ -243,15 +243,15 @@ Character.prototype.canMoveRight = function (){
     return this.canMoveTo(this.tileFrom[0] + 1, this.tileFrom[1]); 
 };
 
-Character.prototype.canMoveDirection = function (){
+Character.prototype.canMoveDirection = function (d){
     switch (d)
     {
         case directions.up: return this.canMoveUp();
         case directions.down: return this.canMoveDown();
         case directions.left: return this.canMoveLeft();
-        default : return this.canMoveright();
+        default : return this.canMoveRight();
     }
-}
+};
 
 Character.prototype.moveLeft = function (t){
     this.tileTo[0] -= 1;
@@ -276,6 +276,16 @@ Character.prototype.moveDown = function (t){
     this.timeMoved = t;
     this.direction = directions.down;
 }
+
+Character.prototype.moveDirection = function (d,t){
+    switch (d)
+    {
+        case directions.up: return this.moveUp(t);
+        case directions.down: return this.moveDown(t);
+        case directions.left: return this.moveleft(t);
+        default: return this.moveRight(t);
+    }
+};
 
 function toIndex(x, y){
     return ((y * mapW) + x);
