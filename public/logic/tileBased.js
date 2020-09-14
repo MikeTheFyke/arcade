@@ -12,41 +12,32 @@ var framesLastSecond = 0;
 var lastFrameTime = 0;
 
 var tileSet = null;
-var tileSetURL = "./public/images/tilesSet.png";
+var tileSetURL = "./public/images/FO-TileBasedSheet.png";
 var tileSetLoaded = false;
 
-var keysDown = {
-    37: false,
-    38: false,
-    39: false,
-    40: false
-};
-
-var player = new Character();
-
 var gameMap = [ // Tile 0 barrier, Tile 1 path, Tile 2 water
-//  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 
-	0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // Row 1
-	0, 2, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 0, // Row 2
-	0, 2, 3, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 0, // Row 3
-	0, 2, 3, 1, 4, 4, 1, 1, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 0, // Row 4
-	0, 2, 3, 1, 1, 4, 4, 1, 2, 3, 3, 2, 1, 1, 2, 1, 0, 0, 0, 0, // Row 5
-	0, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 0, // Row 6
-	0, 1, 1, 1, 1, 2, 4, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0, // Row 7
-	0, 1, 1, 1, 1, 2, 4, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0, // Row 8
-	0, 1, 1, 1, 1, 2, 4, 4, 4, 4, 4, 1, 1, 1, 2, 2, 2, 2, 1, 0, // Row 9
-	0, 1, 1, 1, 1, 2, 3, 2, 1, 1, 4, 1, 1, 1, 1, 3, 3, 2, 1, 0, // Row 10
-	0, 1, 2, 2, 2, 2, 1, 2, 1, 1, 4, 1, 1, 1, 1, 1, 3, 2, 1, 0, // Row 11
-	0, 1, 2, 3, 3, 2, 1, 2, 1, 1, 4, 4, 4, 4, 4, 4, 4, 2, 4, 4, // Row 12
-	0, 1, 2, 3, 3, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0, // Row 13
-	0, 1, 2, 3, 4, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 1, 0, // Row 14
-	0, 3, 2, 3, 4, 4, 1, 2, 2, 2, 2, 2, 2, 2, 1, 0, 1, 2, 1, 0, // Row 15
-	0, 3, 2, 3, 4, 4, 3, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 3, 0, // Row 16
-	0, 3, 2, 3, 4, 1, 3, 2, 1, 3, 1, 1, 1, 2, 1, 1, 1, 2, 3, 0, // Row 17
-	0, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 1, 1, 2, 2, 2, 2, 2, 3, 0, // Row 18
-	0, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 4, 0, // Row 19
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  // Row 20
-];
+    //  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 
+        0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // Row 1
+        0, 2, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 0, // Row 2
+        0, 2, 3, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 0, // Row 3
+        0, 2, 3, 1, 4, 4, 1, 1, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 0, // Row 4
+        0, 2, 3, 1, 1, 4, 4, 1, 2, 3, 3, 2, 1, 1, 2, 1, 0, 0, 0, 0, // Row 5
+        0, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 0, // Row 6
+        0, 1, 1, 1, 1, 2, 4, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0, // Row 7
+        0, 1, 1, 1, 1, 2, 4, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0, // Row 8
+        0, 1, 1, 1, 1, 2, 4, 4, 4, 4, 4, 1, 1, 1, 2, 2, 2, 2, 1, 0, // Row 9
+        0, 1, 1, 1, 1, 2, 3, 2, 1, 1, 4, 1, 1, 1, 1, 3, 3, 2, 1, 0, // Row 10
+        0, 1, 2, 2, 2, 2, 1, 2, 1, 1, 4, 1, 1, 1, 1, 1, 3, 2, 1, 0, // Row 11
+        0, 1, 2, 3, 3, 2, 1, 2, 1, 1, 4, 4, 4, 4, 4, 4, 4, 2, 4, 4, // Row 12
+        0, 1, 2, 3, 3, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0, // Row 13
+        0, 1, 2, 3, 4, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 1, 0, // Row 14
+        0, 3, 2, 3, 4, 4, 1, 2, 2, 2, 2, 2, 2, 2, 1, 0, 1, 2, 1, 0, // Row 15
+        0, 3, 2, 3, 4, 4, 3, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 3, 0, // Row 16
+        0, 3, 2, 3, 4, 1, 3, 2, 1, 3, 1, 1, 1, 2, 1, 1, 1, 2, 3, 0, // Row 17
+        0, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 1, 1, 2, 2, 2, 2, 2, 3, 0, // Row 18
+        0, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 4, 0, // Row 19
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  // Row 20
+    ];
 
 var floorTypes = {
     solid : 0,
@@ -67,6 +58,13 @@ var directions = {
     right: 1,
     down:  2,
     left:  3
+};
+
+var keysDown = {
+    37: false,
+    38: false,
+    39: false,
+    40: false
 };
 
 var viewport = { // This Object will help to decide what will be viewable to the player
@@ -101,7 +99,9 @@ var viewport = { // This Object will help to decide what will be viewable to the
             this.endTile[1] = mapH - 1;
         }
     }
-}
+};
+
+var player = new Character();
 
 function Character(){
     this.tileFrom = [1,1];
@@ -230,11 +230,13 @@ window.onload = function() {
     tileSet.onerror = function (){
         ctx = null;
         alert("Failed loading tileset.");
+        console.log("TileSheet not found");
     };
     tileSet.onload = function() {
         tileSetLoaded = true;
-        tileSet.src = tileSetURL;
     }
+        tileSet.src = tileSetURL;
+        console.log("Loading");
 
 };
 
@@ -289,7 +291,7 @@ function drawGame() {
     //  ctx.fillStyle = "#0000ff"; // Draw Player
     //  ctx.fillRect(viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1], player.dimensions[0], player.dimensions[1]);
 
-    var sprite = player.sprite[player.direction]; // new Draw Player with sprite sheet
+    var sprite = player.sprites[player.direction]; // new Draw Player with sprite sheet
     ctx.drawImage(tileSet, sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h, 
                   viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1],
                   player.dimensions[0], player.dimensions[1]);
