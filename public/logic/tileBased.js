@@ -178,7 +178,7 @@ Character.prototype.processMovement = function (t){
     if ((t-this.timeMoved)>=this.delayMove){
         this.placeAt(this.tileTo[0], this.tileTo[1]);
         
-        var tileFloor = tileTypes[gameMap][toIndex(this.tileFrom[0], this.tileFrom[1])].floor; // Ice and Conveyor Movement
+        var tileFloor = tileTypes[gameMap[toIndex(this.tileFrom[0], this.tileFrom[1])]].floor; // Ice and Conveyor Movement
             if (tileFloor == floorTypes.ice){
                 if (this.canMoveDirection(this.direction)){
                     this.moveDirection(this.direction, t);
@@ -282,7 +282,7 @@ Character.prototype.moveDirection = function (d,t){
     {
         case directions.up: return this.moveUp(t);
         case directions.down: return this.moveDown(t);
-        case directions.left: return this.moveleft(t);
+        case directions.left: return this.moveLeft(t);
         default: return this.moveRight(t);
     }
 };
