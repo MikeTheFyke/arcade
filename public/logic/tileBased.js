@@ -82,7 +82,20 @@ var tileTypes = {
     4 : {color: "#678fd9", floor:floorTypes.water, sprite:[{x:160, y:0,  w:40, h:40, d:200}, {x:200, y:0,  w:40, h:40, d:200},
                                                            {x:160, y:40, w:40, h:40, d:200}, {x:200, y:40, w:40, h:40, d:200},
                                                            {x:160, y:40, w:40, h:40, d:200}, {x:200, y:0,  w:40, h:40, d:200}
-                                                           ]}
+                                                           ]},
+    5 : {color: "#eeeeff", floor:floorTypes.ice,       sprite:[{x:120,   y:120, w:40, h:40}]},
+    6 : {color: "#cccccc", floor:floorTypes.conveyorL, sprite:[{x:  0,   y: 40, w:40, h:40, d:200}, {x: 40,   y: 40, w:40, h:40, d:200},
+                                                               {x: 80,   y: 40, w:40, h:40, d:200}, {x:120,   y: 40, w:40, h:40, d:200}
+                                                              ]},
+    7 : {color: "#cccccc", floor:floorTypes.conveyorR, sprite:[{x: 120,   y: 80, w:40, h:40, d:200}, {x: 80,   y: 80, w:40, h:40, d:200},
+                                                               {x:  40,   y: 80, w:40, h:40, d:200}, {x:  0,   y: 80, w:40, h:40, d:200}
+                                                              ]},
+    8 : {color: "#cccccc", floor:floorTypes.conveyorD, sprite:[{x: 160,   y:200, w:40, h:40, d:200}, {x:160,   y:160, w:40, h:40, d:200},
+                                                               {x: 160,   y:120, w:40, h:40, d:200}, {x:160,   y: 80, w:40, h:40, d:200}
+                                                              ]},
+    9 : {color: "#cccccc", floor:floorTypes.conveyorR, sprite:[{x: 200,   y: 80, w:40, h:40, d:200}, {x:200,   y:120, w:40, h:40, d:200},
+                                                               {x: 200,   y:160, w:40, h:40, d:200}, {x:200,   y:200, w:40, h:40, d:200}
+                                                              ]}                                                              
 };
 
 var directions = {
