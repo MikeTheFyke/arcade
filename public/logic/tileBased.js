@@ -243,6 +243,16 @@ Character.prototype.canMoveRight = function (){
     return this.canMoveTo(this.tileFrom[0] + 1, this.tileFrom[1]); 
 };
 
+Character.prototype.canMoveDirection = function (){
+    switch (d)
+    {
+        case directions.up: return this.canMoveUp();
+        case directions.down: return this.canMoveDown();
+        case directions.left: return this.canMoveLeft();
+        default : return this.canMoveright();
+    }
+}
+
 Character.prototype.moveLeft = function (t){
     this.tileTo[0] -= 1;
     this.timeMoved = t;
