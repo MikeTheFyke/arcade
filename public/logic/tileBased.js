@@ -11,6 +11,10 @@ var frameCount = 0;
 var framesLastSecond = 0;
 var lastFrameTime = 0;
 
+var tileSet = null;
+var tileSetURL = "./public/images/tilesSet.png";
+var tileSetLoaded = false;
+
 var keysDown = {
     37: false,
     38: false,
