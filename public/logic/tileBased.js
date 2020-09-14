@@ -55,11 +55,18 @@ var floorTypes = {
 };
 
 var tileTypes = {
-    0 : {color: "#685b48", floor:floorTypes.solid, sprite:[{x:0, y:0, w:40, h:40}]},
-    1 : {color: "#5aa457", floor:floorTypes.path, sprite:[{x:40, y:0, w:40, h:40}]},
-    2 : {color: "#e8bd7a", floor:floorTypes.path, sprite:[{x:80, y:0, w:40, h:40}]},
+    0 : {color: "#685b48", floor:floorTypes.solid, sprite:[{x:0,   y:0, w:40, h:40}]},
+    1 : {color: "#5aa457", floor:floorTypes.path,  sprite:[{x:40,  y:0, w:40, h:40}]},
+    2 : {color: "#e8bd7a", floor:floorTypes.path,  sprite:[{x:80,  y:0, w:40, h:40}]},
     3 : {color: "#286625", floor:floorTypes.solid, sprite:[{x:120, y:0, w:40, h:40}]},
     4 : {color: "#678fd9", floor:floorTypes.water, sprite:[{x:160, y:0, w:40, h:40}]}
+};
+
+var directions = {
+    up:    0,
+    right: 1,
+    down:  2,
+    left:  3
 };
 
 var viewport = { // This Object will help to decide what will be viewable to the player
@@ -103,6 +110,13 @@ function Character(){
     this.dimensions = [30,30];
     this.position = [45,45]; // relative to top x coordinate of map
     this.delayMove = 700;
+    this.direction = directions.up
+
+    this.sprites = {};
+    this.sprites[directions.up]       = [{x:0, y:120, w:30, h:30}];
+    this.sprites[directions.right]    = [{x:0, y:150, w:30, h:30}];
+    this.sprites[directions.down]     = [{x:0, y:180, w:30, h:30}];
+    this.sprites[directions.left]     = [{x:0, y:210, w:30, h:30}];
 }
 
 Character.prototype.placeAt = function (x, y){ // Character initial display coordinates
