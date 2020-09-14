@@ -55,11 +55,11 @@ var floorTypes = {
 };
 
 var tileTypes = {
-    0 : {color: "#685b48", floor:floorTypes.solid},
-    1 : {color: "#5aa457", floor:floorTypes.path},
-    2 : {color: "#e8bd7a", floor:floorTypes.path},
-    3 : {color: "#286625", floor:floorTypes.solid},
-    4 : {color: "#678fd9", floor:floorTypes.water}
+    0 : {color: "#685b48", floor:floorTypes.solid, sprite:[{x:0, y:0, w:40, h:40}]},
+    1 : {color: "#5aa457", floor:floorTypes.path, sprite:[{x:40, y:0, w:40, h:40}]},
+    2 : {color: "#e8bd7a", floor:floorTypes.path, sprite:[{x:80, y:0, w:40, h:40}]},
+    3 : {color: "#286625", floor:floorTypes.solid, sprite:[{x:120, y:0, w:40, h:40}]},
+    4 : {color: "#678fd9", floor:floorTypes.water, sprite:[{x:160, y:0, w:40, h:40}]}
 };
 
 var viewport = { // This Object will help to decide what will be viewable to the player
