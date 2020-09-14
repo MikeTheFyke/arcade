@@ -215,7 +215,13 @@ Character.prototype.canMoveTo = function (x, y){
     if (x < 0 || x >= mapW || y < 0 || y >= mapH ) {
         return false;
     }
-    if (tileTypes[gameMap[toIndex(x, y)]].floor != floorTypes.path) {
+    if (tileTypes[gameMap[toIndex(x, y)]].floor != floorTypes.path &&
+        tileTypes[gameMap[toIndex(x, y)]].floor != floorTypes.ice  &&
+        tileTypes[gameMap[toIndex(x, y)]].floor != floorTypes.conveyorL  &&
+        tileTypes[gameMap[toIndex(x, y)]].floor != floorTypes.conveyorR  &&
+        tileTypes[gameMap[toIndex(x, y)]].floor != floorTypes.conveyorU  &&
+        tileTypes[gameMap[toIndex(x, y)]].floor != floorTypes.conveyorD  )
+    {
         return false;
     }
     return true;
