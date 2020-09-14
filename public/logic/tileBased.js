@@ -12,7 +12,7 @@ var framesLastSecond = 0;
 var lastFrameTime = 0;
 
 var tileSet = null;
-var tileSetURL = "./public/images/FO-TileBasedSheet2.png";
+var tileSetURL = "./public/images/FO-TileBasedSheet3.png";
 var tileSetLoaded = false;
 
 // var gameMap = [ // Tile 0 & 3 barriers, Tile 1 & 2 paths, Tile 4 water
