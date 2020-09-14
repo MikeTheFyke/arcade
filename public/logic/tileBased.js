@@ -237,7 +237,7 @@ window.onload = function() {
     };
     tileSet.onload = function() {
         tileSetLoaded = true;
-    }
+    };
         tileSet.src = tileSetURL;
     
     for (x in tileTypes){
@@ -252,10 +252,20 @@ window.onload = function() {
             }
             tileTypes[x]['spriteDuration'] = t;
         }
-    }
-
-
+    };
 };
+
+function getFrame(sprite, duration, time, aniamted){
+    if (!animated){
+        return sprite[0]; // If no animation associated with sprite load index 0 of sprite
+    }
+    time = time % duration;
+    for (x in sprite){
+        if(sprite[x].end >= time){
+            return sprite[x];
+        };
+    };
+}
 
 function drawGame() {
     if (ctx == null) {
