@@ -394,7 +394,7 @@ function drawGame() {
          frameCount++;
      }
 
-     if (!player.processMovement (currentFrameTime)){ // check if key is pressed and which way to move & moveTo Tile is moveable 1 of not 0
+     if (!player.processMovement (currentFrameTime) && gameSpeeds[currentSpeed].multi != 0){ // check if key is pressed and which way to move & moveTo Tile is moveable 1 of not 0 && isnt currently paused '0'
         if(keysDown[38] && player.canMoveUp()){
             player.moveUp(currentFrameTime);
         } else if(keysDown[40] && player.canMoveDown()){
