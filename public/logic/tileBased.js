@@ -324,6 +324,9 @@ window.onload = function() {
         if (e.keyCode >= 37 && e.keyCode <= 40){
             keysDown[e.keyCode] = false;
         }
+        if (e.keyCode == 83){ // 'S' key to change game speed time
+            currentSpeed = (currentSpeed>=(gameSpeeds.length - 1) ? O : currentSpeed + 1);
+        }
     });
 
     viewport.screen = [
