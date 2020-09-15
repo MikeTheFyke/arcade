@@ -154,6 +154,7 @@ function Character(){
     this.timeMoved = 0;
     this.dimensions = [30,30];
     this.position = [45,45]; // relative to top x coordinate of map
+    
     this.delayMove = {};
     this.delayMove[floorTypes.path]      = 400;
     this.delayMove[floorTypes.grass]     = 800;
@@ -182,6 +183,9 @@ Character.prototype.processMovement = function (t){
     if (this.tileFrom[0] == this.tileTo[0] && this.tileFrom[1] == this.tileTo[1]){
         return false;
     } 
+
+    var moveSpeed = this.delayMove[tileTypes[gameMap[toIndex(this.tileFrom[0], this.tileFrom[1])]].floor];
+
     if ((t-this.timeMoved)>=this.delayMove){
         this.placeAt(this.tileTo[0], this.tileTo[1]);
         
