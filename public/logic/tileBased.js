@@ -383,6 +383,7 @@ function drawGame() {
 
     var currentFrameTime = Date.now();
     var timeElapsed = currentFrameTime - lastFrameTime;
+    gameTime += Math.floor(timeElapsed * gameSpeeds[currentSpeed].multi); // Adjusts gameSpeed by choosen speed.
 
      var sec = Math.floor(Date.now()/1000);
      if (sec!=currentSecond){
