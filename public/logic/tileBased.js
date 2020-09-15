@@ -158,6 +158,7 @@ function Character(){
     this.delayMove = {};
     this.delayMove[floorTypes.path]      = 400;
     this.delayMove[floorTypes.grass]     = 800;
+    this.delayMove[floorTypes.water]     = 2000;
     this.delayMove[floorTypes.ice]       = 300;
     this.delayMove[floorTypes.conveyorU] = 200;
     this.delayMove[floorTypes.conveyorD] = 200;
@@ -185,11 +186,13 @@ Character.prototype.processMovement = function (t){
     } 
 
     var moveSpeed = this.delayMove[tileTypes[gameMap[toIndex(this.tileFrom[0], this.tileFrom[1])]].floor]; // Adjsted for different types of floor values.
+    
 
     if ((t-this.timeMoved)>=moveSpeed){
         this.placeAt(this.tileTo[0], this.tileTo[1]);
         
         var tileFloor = tileTypes[gameMap[toIndex(this.tileFrom[0], this.tileFrom[1])]].floor; // Ice and Conveyor Movement
+        
             if (tileFloor == floorTypes.ice){
                 if (this.canMoveDirection(this.direction)){
                     this.moveDirection(this.direction, t);
@@ -209,11 +212,11 @@ Character.prototype.processMovement = function (t){
         this.position[0] = (this.tileFrom[0] * tileW) + ((tileW - this.dimensions[0]) / 2); // X
         this.position[1] = (this.tileFrom[1] * tileH) + ((tileH - this.dimensions[1]) / 2); // Y
         if (this.tileTo[0] != this.tileFrom[0]){
-            var diff = (tileW / this.moveSpeed) * (t - this.timeMoved);
+            var diff = (tileW / moveSpeed) * (t - this.timeMoved);
             this.position[0] += (this.tileTo[0] < this.tileFrom[0] ? 0 - diff : diff);
         }
         if (this.tileTo[1] != this.tileFrom[1]){
-            var diff = (tileH / this.moveSpeed) * (t - this.timeMoved);
+            var diff = (tileH / moveSpeed) * (t - this.timeMoved);
             this.position[1] += (this.tileTo[1] < this.tileFrom[1] ? 0 - diff : diff);
         }
         this.position[0] = Math.round(this.position[0]);
