@@ -16,7 +16,7 @@ var tileSetURL = "./public/images/FO-TileBasedSheet3.png";
 var tileSetLoaded = false;
 
 var gameTime = 0;
-var gameSpeed = [
+var gameSpeeds = [
     {name:"Normal", mult: 1},
     {name:"Slow", mult: 0.3},
     {name:"Fast", mult: 3},
@@ -325,7 +325,8 @@ window.onload = function() {
             keysDown[e.keyCode] = false;
         }
         if (e.keyCode == 83){ // 'S' key to change game speed time
-            currentSpeed = (currentSpeed>=(gameSpeeds.length - 1) ? O : currentSpeed + 1);
+            currentSpeed = (currentSpeed>=(gameSpeeds.length - 1) ? 0 : currentSpeed + 1);
+            console.log(currentSpeed);
         }
     });
 
@@ -383,7 +384,7 @@ function drawGame() {
 
     var currentFrameTime = Date.now();
     var timeElapsed = currentFrameTime - lastFrameTime;
-    gameTime += Math.floor(timeElapsed * gameSpeeds[currentSpeed].multi); // Adjusts gameSpeed by choosen speed.
+    gameTime += Math.floor(timeElapsed * gameSpeeds[currentSpeed].mult); // Adjusts gameSpeed by choosen speed.
 
      var sec = Math.floor(Date.now()/1000);
      if (sec!=currentSecond){
@@ -394,7 +395,7 @@ function drawGame() {
          frameCount++;
      }
 
-     if (!player.processMovement (gameTime) && gameSpeeds[currentSpeed].multi != 0){ // check if key is pressed and which way to move & moveTo Tile is moveable 1 of not 0 && isnt currently paused '0'
+     if (!player.processMovement (gameTime) && gameSpeeds[currentSpeed].mult != 0){ // check if key is pressed and which way to move & moveTo Tile is moveable 1 of not 0 && isnt currently paused '0'
         if(keysDown[38] && player.canMoveUp()){
             player.moveUp(gameTime);
         } else if(keysDown[40] && player.canMoveDown()){
@@ -418,7 +419,7 @@ function drawGame() {
             var tile = tileTypes[gameMap[toIndex(x,y)]];
             // ctx.drawImage(tileSet, tile.sprite[0].x, tile.sprite[0].y, tile.sprite[0].w, tile.sprite[0].h,
             //               viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
-            var sprite = getFrame(tile.sprite, tile.spriteDuration, currentFrameTime, tile.animated);
+            var sprite = getFrame(tile.sprite, tile.spriteDuration, gameTime, tile.animated);
             ctx.drawImage(tileSet, sprite.x, sprite.y, sprite.w, sprite.h, viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
          }
      }
@@ -432,7 +433,8 @@ function drawGame() {
                   player.dimensions[0], player.dimensions[1]);
 
      ctx.fillStyle = "#ff0000";
-     ctx.fillText("FPS : " + framesLastSecond, 10, 20);
+     ctx.fillText("FPS : " + framesLastSecond, 10, 20); // FPS
+     ctx.fillText("Game Speed :" + gameSpeeds[currentSpeed].name, 10, 40); // Current Game Speed
 
      lastFrameTime = currentFrameTime;
      requestAnimationFrame(drawGame);
