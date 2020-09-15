@@ -15,6 +15,15 @@ var tileSet = null;
 var tileSetURL = "./public/images/FO-TileBasedSheet3.png";
 var tileSetLoaded = false;
 
+var gameTime = 0;
+var gameSpeed = [
+    {name:"Normal", mult: 1},
+    {name:"Slow", mult: 0.3},
+    {name:"Fast", mult: 3},
+    {name:"Pause", mult: 0}
+];
+var currentSpeed = 0;
+
 // var gameMap = [ // Tile 0 & 3 barriers, Tile 1 & 2 paths, Tile 4 water
 //     //  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 
 //         0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // Row 1
