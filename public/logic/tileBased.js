@@ -93,7 +93,7 @@ var tileTypes = {
     8 : {color: "#cccccc", floor:floorTypes.conveyorD, sprite:[{x: 160,   y:200, w:40, h:40, d:200}, {x:160,   y:160, w:40, h:40, d:200},
                                                                {x: 160,   y:120, w:40, h:40, d:200}, {x:160,   y: 80, w:40, h:40, d:200}
                                                               ]},
-    9 : {color: "#cccccc", floor:floorTypes.conveyorR, sprite:[{x: 200,   y: 80, w:40, h:40, d:200}, {x:200,   y:120, w:40, h:40, d:200},
+    9 : {color: "#cccccc", floor:floorTypes.conveyorU, sprite:[{x: 200,   y: 80, w:40, h:40, d:200}, {x:200,   y:120, w:40, h:40, d:200},
                                                                {x: 200,   y:160, w:40, h:40, d:200}, {x:200,   y:200, w:40, h:40, d:200}
                                                               ]}                                                              
 };
