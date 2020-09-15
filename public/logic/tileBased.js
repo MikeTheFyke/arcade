@@ -155,8 +155,14 @@ function Character(){
     this.dimensions = [30,30];
     this.position = [45,45]; // relative to top x coordinate of map
     this.delayMove = {};
-    this.delayMove[floorTypes.path]  = 400;
-    this.delayMove[floorTypes.grass] = 800;
+    this.delayMove[floorTypes.path]      = 400;
+    this.delayMove[floorTypes.grass]     = 800;
+    this.delayMove[floorTypes.ice]       = 300;
+    this.delayMove[floorTypes.conveyorU] = 200;
+    this.delayMove[floorTypes.conveyorD] = 200;
+    this.delayMove[floorTypes.conveyorL] = 200;
+    this.delayMove[floorTypes.conveyorR] = 200;
+
     this.direction = directions.up;
     this.sprites = {};
     this.sprites[directions.up]       = [{x:0, y:120, w:30, h:30}];
