@@ -70,8 +70,8 @@ var floorTypes = {
     conveyorU : 4, // Conveyor Up
     conveyorD : 5, // Conveyor Down
     conveyorL : 6, // Conveyor Left
-    conveyorR : 7  // Conveyor Right
-
+    conveyorR : 7, // Conveyor Right
+    grass     : 8
 };
 
 var tileTypes = {
