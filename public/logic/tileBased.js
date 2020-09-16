@@ -509,6 +509,10 @@ window.onload = function() {
     };
     mapTileData.buildMapFromData(gameMap, mapW, mapH);
     mapTileData.addRoofs(roofList);
+
+    mapTileData.map[((2*mapW)+2)].eventEnter = function() {
+        console.log("Welcome Inside, take a load off");
+    };
 };
 
 function getFrame(sprite, duration, time, animated){
@@ -560,6 +564,9 @@ function drawGame() {
      viewport.update(player.position[0] + (player.dimensions[0]/2),
                      player.position[1] + (player.dimensions[1]/2)
                     );
+
+    var playerRoof1 = mapTileData.map[toIndex(player.tileFrom[0], player.tileFrom[1])].roof;
+    var playerRoof2 = mapTileData.map[toIndex(player.tileTo[0],   player.tileTo[1])].roof;
 
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, viewport.screen[0], viewport.screen[1]);
