@@ -18,6 +18,8 @@ var tileSetLoaded = false;
 var gameTime = 0;
 var gameSpeeds = [
     {name:"Normal", mult: 1},
+    // {name:"Slow", mult: 0.3},
+    // {name:"Fast", mult: 3},
     {name:"Pause", mult: 0}
 ];
 var currentSpeed = 0;
@@ -432,8 +434,9 @@ function drawGame() {
 
      ctx.fillStyle = "#ff0000";
      ctx.fillText("FPS : " + framesLastSecond, 10, 20); // FPS
-     ctx.fillText("Game Speed :" + gameSpeeds[currentSpeed].name, 10, 40); // Current Game Speed
-
+     if (gameSpeeds[currentSpeed].mult == 0){
+        ctx.fillText("Game Speed :" + gameSpeeds[currentSpeed].name, 140, 20); // Current Game Speed
+     }
      lastFrameTime = currentFrameTime;
      requestAnimationFrame(drawGame);
 }
