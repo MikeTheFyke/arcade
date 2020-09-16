@@ -191,7 +191,9 @@ var tileTypes = {
                                                               ]},
     9 : {color: "#cccccc", floor:floorTypes.conveyorU, sprite:[{x: 200,   y: 80, w:40, h:40, d:200}, {x:200,   y:120, w:40, h:40, d:200},
                                                                {x: 200,   y:160, w:40, h:40, d:200}, {x:200,   y:200, w:40, h:40, d:200}
-                                                              ]}                                                              
+                                                              ]},
+    10 : {color: "#ccaa00", floor:floorTypes.solid,  sprite:[{x:240,  y: 0, w:40, h:40}]},
+    11 : {color: "#ccaa00", floor:floorTypes.solid,  sprite:[{x:240,  y:40, w:40, h:40}]}
 };
 
 var directions = {
