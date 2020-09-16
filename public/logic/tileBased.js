@@ -234,10 +234,10 @@ TileMap.prototype.addRoofs = function(roofs){
 
         var r = roofs[i];
 
-        if(r.x < 0 || r.y < 0 || r.x >= this.w || r.y >= this.h || (r.x + r.w) > this.w || (r.y + r.h)> this.h || r.data.length != (r.w*r.h)){
+        if(r.x < 0 || r.y < 0 || r.x >= this.w || r.y >= this.h || (r.x + r.w) > this.w || (r.y + r.h) > this.h || r.data.length != (r.w*r.h)){
             continue;
         }
-        for (var y = 0; r < r.h; y++){
+        for (var y = 0; y < r.h; y++){
             for (var x = 0; x < r.w; x++){
                 var tileIdx = (((r.y+y)*this.w)+r.x+x);
 
@@ -499,7 +499,7 @@ window.onload = function() {
         tileTypes[x]['animated'] = tileTypes[x].sprite.length > 1 ? true : false;
         if(tileTypes[x].animated){
             var t = 0;
-            for (s in tileTypes[x].sprite){
+            for (s in tileTypes[x].sprite) {
                 tileTypes[x].sprite[s]['start'] = t;
 
                 t+= tileTypes[x].sprite[s].d;
@@ -507,7 +507,7 @@ window.onload = function() {
             }
             tileTypes[x]['spriteDuration'] = t;
         }
-    };
+    }
     mapTileData.buildMapFromData(gameMap, mapW, mapH);
     mapTileData.addRoofs(roofList);
 
@@ -578,6 +578,7 @@ function drawGame() {
             // ctx.drawImage(tileSet, tile.sprite[0].x, tile.sprite[0].y, tile.sprite[0].w, tile.sprite[0].h,
             //               viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
             var sprite = getFrame(tile.sprite, tile.spriteDuration, gameTime, tile.animated);
+
             ctx.drawImage(tileSet, sprite.x, sprite.y, sprite.w, sprite.h, viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
 
             if (mapTileData.map[toIndex(x, y)].roofType != 0       && 
