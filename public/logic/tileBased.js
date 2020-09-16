@@ -205,6 +205,12 @@ function Tile (tx, ty, tt){
     this.eventEnter = null;
 };
 
+function TileMap (){
+    this.map   = [];
+    this.w     =  0;
+    this.h     =  0;
+}
+
 var directions = {
     up:    0,
     right: 1,
