@@ -12,7 +12,7 @@ var framesLastSecond = 0;
 var lastFrameTime = 0;
 
 var tileSet = null;
-var tileSetURL = "./public/images/FO-TileBasedSheet3.png";
+var tileSetURL = "./public/images/FO-TileBasedSheet4.png";
 var tileSetLoaded = false;
 
 var gameTime = 0;
