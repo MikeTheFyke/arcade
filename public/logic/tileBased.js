@@ -196,6 +196,15 @@ var tileTypes = {
     11 : {color: "#ccaa00", floor:floorTypes.solid,  sprite:[{x:240,  y:40, w:40, h:40}]}
 };
 
+function Tile (tx, ty, tt){
+    this.x          = tx;
+    this.y          = ty;
+    this.type       = tt;
+    this.roof       = null;
+    this.roofType   = 0;
+    this.eventEnter = null;
+};
+
 var directions = {
     up:    0,
     right: 1,
