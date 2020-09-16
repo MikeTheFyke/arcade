@@ -227,7 +227,25 @@ TileMap.prototype.buildMapFromData = function(d, w, h){
         }
     }
     return true;
-}
+};
+
+TileMap.prototype.addRoofs = function(roofs){
+    for (var i in roofs) {
+        var r = roofs[i];
+
+        if(r.x < 0 || r.y < 0 || r.x >= this.w || r.y >= this.h || (r.x + r.w) > this.w || (r.y + r.h)>= this.h || r.data.length != (r.w*r.h)){
+            continue;
+        }
+        for (var y = 0; r < r.h; y++){
+            for (var x = 0; x < r.w; x++){
+                var tileIdx = (((r.y+y)*this.w)+r.x+x);
+
+                this.map[tileIdx].roof = r;
+                this.map[tileIdx].roofType = r.data[((y*r.w)+x)];
+            }
+        }
+    }
+};
 
 var directions = {
     up:    0,
