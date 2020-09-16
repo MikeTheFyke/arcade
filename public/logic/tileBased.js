@@ -571,15 +571,21 @@ function drawGame() {
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, viewport.screen[0], viewport.screen[1]);
 
-     for (var y = viewport.startTile[1]; y <= viewport.endTile[1]; y++){ // y corresponds to Y coordinate on map
-         for (var x = viewport.startTile[0]; x <= viewport.endTile[0]; x++){ // x corresponds to X coordinate on map
-            var tile = tileTypes[gameMap[toIndex(x,y)]];
+    for (var y = viewport.startTile[1]; y <= viewport.endTile[1]; y++){ // y corresponds to Y coordinate on map
+        for (var x = viewport.startTile[0]; x <= viewport.endTile[0]; x++){ // x corresponds to X coordinate on map
+            var tile = tileTypes[mapTileData.map[toIndex(x,y)].type];
             // ctx.drawImage(tileSet, tile.sprite[0].x, tile.sprite[0].y, tile.sprite[0].w, tile.sprite[0].h,
             //               viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
             var sprite = getFrame(tile.sprite, tile.spriteDuration, gameTime, tile.animated);
             ctx.drawImage(tileSet, sprite.x, sprite.y, sprite.w, sprite.h, viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
-         }
-     }
+
+            if (mapTileData.map[toIndex(x, y)].roofType != 0       && 
+                mapTileData.map[toIndex(x, y)].roof != playerRoof1 && 
+                mapTileData.map[toIndex(x, y)].roof != playerRoof2)  {
+                    tile = tileTypes[mapTileData.map[toIndex(x, y)].roofType];
+                }
+        };
+    };
 
     //  ctx.fillStyle = "#0000ff"; // Draw Player
     //  ctx.fillRect(viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1], player.dimensions[0], player.dimensions[1]);
