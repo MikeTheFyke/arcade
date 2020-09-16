@@ -119,7 +119,7 @@ var gameMap = [ // Map 11 - Tile 0 & 3 barriers, Tile 1 & 2 paths, Tile 4 water
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  // Row 20
 ];
 
-mapTileData = new TileMap();
+var mapTileData = new TileMap();
 
 var roofList = [
     { x:5, y:3, w:4, h:7, data: [ // roof 01
@@ -203,7 +203,7 @@ function Tile (tx, ty, tt){
     this.roof       = null;
     this.roofType   = 0;
     this.eventEnter = null;
-};
+}
 
 function TileMap (){
     this.map   = [];
@@ -221,9 +221,9 @@ TileMap.prototype.buildMapFromData = function(d, w, h){
     
     this.map.length = 0;
 
-    for(var y = 0; x < y; y++){
+    for(var y = 0; y < h; y++){
         for(var x = 0; x < w; x++){
-            this.map.puch( new Tile(x, y, d[ ((y*w)+x) ] ) );
+            this.map.push( new Tile(x, y, d[ ((y*w)+x) ] ) );
         }
     }
     return true;
@@ -231,9 +231,10 @@ TileMap.prototype.buildMapFromData = function(d, w, h){
 
 TileMap.prototype.addRoofs = function(roofs){
     for (var i in roofs) {
+
         var r = roofs[i];
 
-        if(r.x < 0 || r.y < 0 || r.x >= this.w || r.y >= this.h || (r.x + r.w) > this.w || (r.y + r.h)>= this.h || r.data.length != (r.w*r.h)){
+        if(r.x < 0 || r.y < 0 || r.x >= this.w || r.y >= this.h || (r.x + r.w) > this.w || (r.y + r.h)> this.h || r.data.length != (r.w*r.h)){
             continue;
         }
         for (var y = 0; r < r.h; y++){
@@ -262,10 +263,10 @@ var keysDown = {
 };
 
 var viewport = { // This Object will help to decide what will be viewable to the player
-    screen : [0,0],
+    screen :    [0,0],
     startTile : [0,0],
-    endTile : [0,0],
-    offset: [0,0],
+    endTile :   [0,0],
+    offset:     [0,0],
     update : function(px, py){
         this.offset[0] = Math.floor((this.screen[0]/2) - px);
         this.offset[1] = Math.floor((this.screen[1]/2) - py);
@@ -344,7 +345,7 @@ Character.prototype.processMovement = function (t){
         //     tileEvents[toIndex(this.tileTo[0], this.tileTo[1])](this);
         // }
 
-        if (mapTileData.map[toIndex(this.tileTo[0], this.tileTo[1])].eventEnter!=null){ // Added for roof event
+        if (mapTileData.map[toIndex(this.tileTo[0], this.tileTo[1])].eventEnter!=null) { // Added for roof event
             mapTileData.map[toIndex(this.tileTo[0], this.tileTo[1])].eventEnter(this);
         }
 
@@ -511,7 +512,7 @@ window.onload = function() {
     mapTileData.addRoofs(roofList);
 
     mapTileData.map[((2*mapW)+2)].eventEnter = function() {
-        console.log("Welcome Inside, take a load off");
+        console.log("Welcome to tile 2 X 2");
     };
 };
 
@@ -583,6 +584,9 @@ function drawGame() {
                 mapTileData.map[toIndex(x, y)].roof != playerRoof1 && 
                 mapTileData.map[toIndex(x, y)].roof != playerRoof2)  {
                     tile = tileTypes[mapTileData.map[toIndex(x, y)].roofType];
+                    sprite = getFrame(tile.sprite, tile.spriteDuration, gameTime, tile.animated);
+                    
+                    ctx.drawImage(tileSet, sprite.x, sprite.y, sprite.w, sprite.h, viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
                 }
         };
     };
