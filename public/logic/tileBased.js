@@ -334,17 +334,21 @@ Character.prototype.processMovement = function (t){
         return false;
     } 
 
-    var moveSpeed = this.delayMove[tileTypes[gameMap[toIndex(this.tileFrom[0], this.tileFrom[1])]].floor]; // Adjsted for different types of floor values.
+    var moveSpeed = this.delayMove[tileTypes[mapTileData.map[toIndex(this.tileFrom[0], this.tileFrom[1])].type].floor]; // Adjsted for different types of floor values.
     
 
     if ((t-this.timeMoved)>=moveSpeed){
         this.placeAt(this.tileTo[0], this.tileTo[1]);
 
-        if(typeof tileEvents[toIndex(this.tileTo[0], this.tileTo[1])]!= 'undefined') { // Added For Bridge movement
-            tileEvents[toIndex(this.tileTo[0], this.tileTo[1])](this);
+        // if(typeof tileEvents[toIndex(this.tileTo[0], this.tileTo[1])]!= 'undefined') { // Added For Bridge movement
+        //     tileEvents[toIndex(this.tileTo[0], this.tileTo[1])](this);
+        // }
+
+        if (mapTileData.map[toIndex(this.tileTo[0], this.tileTo[1])].eventEnter!=null){ // Added for roof event
+            mapTileData.map[toIndex(this.tileTo[0], this.tileTo[1])].eventEnter(this);
         }
 
-        var tileFloor = tileTypes[gameMap[toIndex(this.tileFrom[0], this.tileFrom[1])]].floor; // Ice and Conveyor Movement
+        var tileFloor = tileTypes[mapTileData.map[toIndex(this.tileFrom[0], this.tileFrom[1])].type].floor; // Ice and Conveyor Movement
         
             if (tileFloor == floorTypes.ice){
                 if (this.canMoveDirection(this.direction)){
@@ -382,7 +386,7 @@ Character.prototype.canMoveTo = function (x, y){
     if (x < 0 || x >= mapW || y < 0 || y >= mapH ) {
         return false;
     }
-    if(typeof this.delayMove[tileTypes[gameMap[toIndex(x, y)]].floor] == 'undefined') {
+    if(typeof this.delayMove[tileTypes[mapTileData.map[toIndex(x, y)].type].floor] == 'undefined') {
         return false;
     }
     return true;
@@ -503,6 +507,8 @@ window.onload = function() {
             tileTypes[x]['spriteDuration'] = t;
         }
     };
+    mapTileData.buildMapFromData(gameMap, mapW, mapH);
+    mapTileData.addRoofs(roofList);
 };
 
 function getFrame(sprite, duration, time, animated){
