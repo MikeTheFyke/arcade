@@ -18,8 +18,6 @@ var tileSetLoaded = false;
 var gameTime = 0;
 var gameSpeeds = [
     {name:"Normal", mult: 1},
-    {name:"Slow", mult: 0.3},
-    {name:"Fast", mult: 3},
     {name:"Pause", mult: 0}
 ];
 var currentSpeed = 0;
