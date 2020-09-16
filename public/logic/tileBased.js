@@ -258,7 +258,11 @@ Character.prototype.processMovement = function (t){
 
     if ((t-this.timeMoved)>=moveSpeed){
         this.placeAt(this.tileTo[0], this.tileTo[1]);
-        
+
+        if(typeof tileEvents[toIndex(this.tileTo[0], this.tileTo[1])]!= 'undefined') { // Added For Bridge movement
+            tileEvents[toIndex(this.tileTo[0], this.tileTo[1])](this);
+        }
+
         var tileFloor = tileTypes[gameMap[toIndex(this.tileFrom[0], this.tileFrom[1])]].floor; // Ice and Conveyor Movement
         
             if (tileFloor == floorTypes.ice){
