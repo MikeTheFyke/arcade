@@ -211,6 +211,24 @@ function TileMap (){
     this.h     =  0;
 }
 
+TileMap.prototype.buildMapFromData = function(d, w, h){
+    this.w      = w;
+    this.h      = h;
+
+    if(d.length!=(w*h)) {
+        return false;
+    }
+    
+    this.map.length = 0;
+
+    for(var y = 0; x < y; y++){
+        for(var x = 0; x < w; x++){
+            this.map.puch( new Tile(x, y, d[ ((y*w)+x) ] ) );
+        }
+    }
+    return true;
+}
+
 var directions = {
     up:    0,
     right: 1,
