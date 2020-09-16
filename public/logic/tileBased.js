@@ -119,6 +119,17 @@ var gameMap = [// Map 10 - Tile 0 & 3 barriers, Tile 1 & 2 paths, Tile 4 water
 // 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  // Row 20
 // ];
 
+var tileEvents = { // tileEvents for Bridge functionality
+    23: drawBridge,
+    25: drawBridge,
+    121 : function(c) {c.placeAt(1,8); },
+    161 : function(c) {c.placeAt(1,6); }
+};
+
+function drawBridge(){
+    gameMap[toIndex(4,5)] = (gameMap[toIndex(4,5)] == 4 ? 2 : 4);
+};
+
 var floorTypes = {
     solid     : 0,
     path      : 1,
