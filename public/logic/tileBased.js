@@ -71,6 +71,16 @@ function PlacedItemStack (id, qty){
     this.y    = 0;
 };
 
+PlacedItemStack.prototype.placeAt = function (nx, ny){
+    if (mapTileData.map[toIndex(this.x, this.y)].itemStack == this){
+        mapTileDate.map[toIndex(this.x, this.y)].itemStack = null;
+    }
+    this.x = nx;
+    this.y = ny;
+
+    mapTileData.map[toIndex(nx, ny)].itemStack = this;
+};
+
 var objectCollision = { // Adding objects to map (crate and tree)
     none    : 0,
     solid   : 1
