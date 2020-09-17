@@ -64,6 +64,13 @@ Inventory.prototype.addItems = function (id, qty) {
     return qty;
 };
 
+function PlacedItemStack (id, qty){
+    this.type = id;
+    this.qty  = qty;
+    this.x    = 0;
+    this.y    = 0;
+};
+
 var objectCollision = { // Adding objects to map (crate and tree)
     none    : 0,
     solid   : 1
