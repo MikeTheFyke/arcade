@@ -53,6 +53,13 @@ var objectTypes = {
     }
 };
 
+function MapObject(nt){
+    this.x    = 0;
+    this.y    = 0;
+    this.type = nt;
+}
+
+
 // var gameMap = [ // Tile 0 & 3 barriers, Tile 1 & 2 paths, Tile 4 water
 //     //  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 
 //         0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // Row 1
