@@ -713,7 +713,7 @@ function drawGame() {
             player.moveLeft(gameTime);
         } else if(keysDown[39] && player.canMoveRight()){
             player.moveRight(gameTime);
-        }
+        } 
      }
 
      viewport.update(player.position[0] + (player.dimensions[0]/2),
@@ -790,11 +790,33 @@ function drawGame() {
         }
     } // Closing of Z loop
 
-     ctx.fillStyle = "#ff0000";
-     ctx.fillText("FPS : " + framesLastSecond, 10, 20); // FPS
+    for (var i = 0; i < player.inventory.spaces; i++){ // Drawing Inventory to screen
+        ctx.fillStyle = "#ddccaa";
+        ctx.fillRect(10 + (i * 50), 350, 40, 40);
+
+        if (typeof player.inventory.stacks[i] != 'undefined'){
+            var it = itemTypes[player.inventory.stacks[i].type];
+            var sprite = it.sprite;
+
+            ctx.drawImage(tileSet, sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h, 10 + (i * 50) + it.offset[0],
+                           350 + it.offset[1], sprite[0].w, sprite[0].h );
+            
+            if (player.inventory.stacks[i].qty > 1){
+                ctx.fillStyle = "#000000";
+                ctx.fillText(" " + player.inventory.stacks[i].qty, 10 + (i * 50 + 38, 350 + 38));
+            }
+        }
+    }
+
+    ctx.textAlign = "Left"; // Added for inventory display
+
+    ctx.fillStyle = "#ff0000";
+    ctx.fillText("FPS : " + framesLastSecond, 10, 20); // FPS
+    
      if (gameSpeeds[currentSpeed].mult == 0){
         ctx.fillText("Game " + gameSpeeds[currentSpeed].name, 165, 20); // Current Game Speed
-     }
-     lastFrameTime = currentFrameTime;
-     requestAnimationFrame(drawGame);
+    }
+
+    lastFrameTime = currentFrameTime;
+    requestAnimationFrame(drawGame);
 }
