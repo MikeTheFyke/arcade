@@ -713,7 +713,9 @@ function drawGame() {
             player.moveLeft(gameTime);
         } else if(keysDown[39] && player.canMoveRight()){
             player.moveRight(gameTime);
-        } 
+        } else if(keysDown[80]){ // 'P' key for Item Pickup
+            player.pickup();
+        }
      }
 
      viewport.update(player.position[0] + (player.dimensions[0]/2),
