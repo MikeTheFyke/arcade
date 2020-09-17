@@ -73,7 +73,7 @@ var itemTypes = {
     1 : {
         name     : "Star",
         maxStack : 2,
-        sprite   : [{x:120, y:160, w:40, h:40}],
+        sprite   : new Sprite ([{x:120, y:160, w:40, h:40}]),
         offset   : [0,0] // setting where item will be placed compared to the top x,y corordinate of the mapTileSet
     }
 };
@@ -134,21 +134,21 @@ var objectCollision = { // Adding objects to map (crate and tree)
 var objectTypes = {
     1 : {
         name     : "Box",
-        sprite   : [{x:240, y:80, w:40, h:40}],
+        sprite   : new Sprite ([{x:240, y:80, w:40, h:40}]),
         offset   : [0,0],
         collision : objectCollision.solid,
         zIndex   : 1
     },
     2 : {
         name     : "Broken Box",
-        sprite   : [{x:240, y:120, w:40, h:40}],
+        sprite   : new Sprite ([{x:240, y:120, w:40, h:40}]),
         offset   : [0,0],
         collision : objectCollision.none,
         zIndex   : 1
     },
     3 : {
         name     : "Tree Top",
-        sprite   : [{x:280, y:0, w:80, h:80}],
+        sprite   : new Sprite ([{x:280, y:0, w:80, h:80}]),
         offset   : [-20,-20],
         collision : objectCollision.none,
         zIndex   : 3
@@ -318,29 +318,29 @@ var floorTypes = {
 };
 
 var tileTypes = {
-    0 : {color: "#685b48", floor:floorTypes.solid, sprite:[{x:0,   y:0, w:40, h:40}]},
-    1 : {color: "#5aa457", floor:floorTypes.grass, sprite:[{x:40,  y:0, w:40, h:40}]},
-    2 : {color: "#e8bd7a", floor:floorTypes.path,  sprite:[{x:80,  y:0, w:40, h:40}]},
-    3 : {color: "#286625", floor:floorTypes.solid, sprite:[{x:120, y:0, w:40, h:40}]},
-    4 : {color: "#678fd9", floor:floorTypes.water, sprite:[{x:160, y:0,  w:40, h:40, d:200}, {x:200, y:0,  w:40, h:40, d:200},
-                                                           {x:160, y:40, w:40, h:40, d:200}, {x:200, y:40, w:40, h:40, d:200},
-                                                           {x:160, y:40, w:40, h:40, d:200}, {x:200, y:0,  w:40, h:40, d:200}
-                                                           ]},
-    5 : {color: "#eeeeff", floor:floorTypes.ice,       sprite:[{x:120,   y:120, w:40, h:40}]},
-    6 : {color: "#cccccc", floor:floorTypes.conveyorL, sprite:[{x:  0,   y: 40, w:40, h:40, d:200}, {x: 40,   y: 40, w:40, h:40, d:200},
-                                                               {x: 80,   y: 40, w:40, h:40, d:200}, {x:120,   y: 40, w:40, h:40, d:200}
-                                                              ]},
-    7 : {color: "#cccccc", floor:floorTypes.conveyorR, sprite:[{x: 120,   y: 80, w:40, h:40, d:200}, {x: 80,   y: 80, w:40, h:40, d:200},
-                                                               {x:  40,   y: 80, w:40, h:40, d:200}, {x:  0,   y: 80, w:40, h:40, d:200}
-                                                              ]},
-    8 : {color: "#cccccc", floor:floorTypes.conveyorD, sprite:[{x: 160,   y:200, w:40, h:40, d:200}, {x:160,   y:160, w:40, h:40, d:200},
-                                                               {x: 160,   y:120, w:40, h:40, d:200}, {x:160,   y: 80, w:40, h:40, d:200}
-                                                              ]},
-    9 : {color: "#cccccc", floor:floorTypes.conveyorU, sprite:[{x: 200,   y: 80, w:40, h:40, d:200}, {x:200,   y:120, w:40, h:40, d:200},
-                                                               {x: 200,   y:160, w:40, h:40, d:200}, {x:200,   y:200, w:40, h:40, d:200}
-                                                              ]},
-    10 : {color: "#ccaa00", floor:floorTypes.solid,  sprite:[{x:240,  y: 0, w:40, h:40}]},
-    11 : {color: "#ccaa00", floor:floorTypes.solid,  sprite:[{x:240,  y:40, w:40, h:40}]}
+    0 : {color: "#685b48", floor:floorTypes.solid, sprite: new Sprite ([{x:0,   y:0, w:40, h:40}])},
+    1 : {color: "#5aa457", floor:floorTypes.grass, sprite: new Sprite ([{x:40,  y:0, w:40, h:40}])},
+    2 : {color: "#e8bd7a", floor:floorTypes.path,  sprite: new sprite ([{x:80,  y:0, w:40, h:40}])},
+    3 : {color: "#286625", floor:floorTypes.solid, sprite: new sprite ([{x:120, y:0, w:40, h:40}])},
+    4 : {color: "#678fd9", floor:floorTypes.water, sprite: new sprite ([{x:160, y:0,  w:40, h:40, d:200}, {x:200, y:0,  w:40, h:40, d:200},
+                                                                        {x:160, y:40, w:40, h:40, d:200}, {x:200, y:40, w:40, h:40, d:200},
+                                                                        {x:160, y:40, w:40, h:40, d:200}, {x:200, y:0,  w:40, h:40, d:200}
+                                                                      ])},
+    5 : {color: "#eeeeff", floor:floorTypes.ice,       sprite: new sprite ([{x:120,   y:120, w:40, h:40}])},
+    6 : {color: "#cccccc", floor:floorTypes.conveyorL, sprite: new sprite ([{x:  0,   y: 40, w:40, h:40, d:200}, {x: 40,   y: 40, w:40, h:40, d:200},
+                                                                            {x: 80,   y: 40, w:40, h:40, d:200}, {x:120,   y: 40, w:40, h:40, d:200}
+                                                                          ])},
+    7 : {color: "#cccccc", floor:floorTypes.conveyorR, sprite: new sprite ([{x: 120,   y: 80, w:40, h:40, d:200}, {x: 80,   y: 80, w:40, h:40, d:200},
+                                                                            {x:  40,   y: 80, w:40, h:40, d:200}, {x:  0,   y: 80, w:40, h:40, d:200}
+                                                                           ])},
+    8 : {color: "#cccccc", floor:floorTypes.conveyorD, sprite: new sprite ([{x: 160,   y:200, w:40, h:40, d:200}, {x:160,   y:160, w:40, h:40, d:200},
+                                                                            {x: 160,   y:120, w:40, h:40, d:200}, {x:160,   y: 80, w:40, h:40, d:200}
+                                                                           ])},
+    9 : {color: "#cccccc", floor:floorTypes.conveyorU, sprite: new sprite ([{x: 200,   y: 80, w:40, h:40, d:200}, {x:200,   y:120, w:40, h:40, d:200},
+                                                                            {x: 200,   y:160, w:40, h:40, d:200}, {x:200,   y:200, w:40, h:40, d:200}
+                                                                           ])},
+    10 : {color: "#ccaa00", floor:floorTypes.solid,  sprite: new sprite ([{x:240,  y: 0, w:40, h:40}])},
+    11 : {color: "#ccaa00", floor:floorTypes.solid,  sprite: new sprite ([{x:240,  y:40, w:40, h:40}])}
 };
 
 function Tile (tx, ty, tt){
