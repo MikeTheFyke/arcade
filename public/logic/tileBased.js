@@ -45,7 +45,7 @@ function Inventory(s) {  // Created for itemTypes
 
 Inventory.prototype.addItems = function (id, qty) {
     for (var i = 0; i < this.spaces; i++){
-        if (this.stacks.length <= 1){
+        if (this.stacks.length <= i){
             var maxHere = (qty > itemTypes[id].maxStack ? itemtypes[id].maxStack : qty);
             this.stacks.push(new Stack(id, maxHere));
             qty -= maxHere;
@@ -672,7 +672,7 @@ window.onload = function() {
     };
 
     for (var i = 3; i < 8; i++){ // Item Loops for Star Items
-        var ps = new PlacedItemStack(1,1); ps.placeAt(3, 1);
+        var ps = new PlacedItemStack(1,1); ps.placeAt(3, i); // PlacedItemStack (id, qty), placeAt(x,y)
     };
 };
 
@@ -811,7 +811,7 @@ function drawGame() {
             
             if (player.inventory.stacks[i].qty > 1){
                 ctx.fillStyle = "#000000";
-                ctx.fillText(" " + player.inventory.stacks[i].qty, 10 + (i * 50 + 38, 350 + 38));
+                ctx.fillText(" " + player.inventory.stacks[i].qty, 10 + (i * 50) + 38, 350 + 38);
             }
         }
     }
