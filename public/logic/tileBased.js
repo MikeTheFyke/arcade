@@ -43,7 +43,7 @@ function Sprite(data){
         }
     }
     this. frames = data;
-};
+}
 
 Sprite.prototype.draw = function(t, x, y){
     var frameIdx = 0;
@@ -51,12 +51,12 @@ Sprite.prototype.draw = function(t, x, y){
     if (!this.loop && this.animated && t >= this.duration){
         frameIdx = (this.frames.length - 1);
     } else if (this.animated){
-        t = t % duration;
+        t = t % this.duration;
         var totalD = 0;
 
         for (var i in this.frames){
             totalD += this.frames[i].d;
-            frameIdx = 1;
+            frameIdx = i;
 
             if (t <= totalD){
                 break;
@@ -66,7 +66,7 @@ Sprite.prototype.draw = function(t, x, y){
     var offset = (typeof this.frames[frameIdx].offset =='undefined' ? [0,0] : this.frames[frameIdx].offset);
 
     ctx.drawImage(tileSet, this.frames[frameIdx].x, this.frames[frameIdx].y, this.frames[frameIdx].w, this.frames[frameIdx].h,
-                   x + offset[0], y + offset[1], this.frames[framesIdx].w, this.frames[framesIdx].h);
+                  x + offset[0], y + offset[1], this.frames[frameIdx].w, this.frames[frameIdx].h);
 };
 
 var itemTypes = {
@@ -457,7 +457,7 @@ function Character(){
     
     this.delayMove = {};
     this.delayMove[floorTypes.path]      = 400;
-    this.delayMove[floorTypes.grass]     = 800;
+    this.delayMove[floorTypes.grass]     = 600;
     // this.delayMove[floorTypes.water]     = 2000;
     this.delayMove[floorTypes.ice]       = 300;
     this.delayMove[floorTypes.conveyorU] = 200;
@@ -467,10 +467,10 @@ function Character(){
 
     this.direction = directions.down;
     this.sprites = {};
-    this.sprites[directions.up]       =  new Sprite ([{x:0, y:120, w:30, h:30}]);
-    this.sprites[directions.right]    =  new Sprite ([{x:0, y:150, w:30, h:30}]);
-    this.sprites[directions.down]     =  new Sprite ([{x:0, y:180, w:30, h:30}]);
-    this.sprites[directions.left]     =  new Sprite ([{x:0, y:210, w:30, h:30}]);
+    this.sprites[directions.up]       =  new Sprite ([{x:0, y:120, w:30, h:30, d:100}], [{x:30, y:120, w:30, h:30, d:100}], [{x:60, y:120, w:30, h:30, d:100}], [{x:90, y:120, w:30, h:30, d:100}]);
+    this.sprites[directions.right]    =  new Sprite ([{x:0, y:150, w:30, h:30, d:100}], [{x:30, y:150, w:30, h:30, d:100}], [{x:60, y:150, w:30, h:30, d:100}], [{x:90, y:150, w:30, h:30, d:100}]);
+    this.sprites[directions.down]     =  new Sprite ([{x:0, y:180, w:30, h:30, d:100}], [{x:30, y:180, w:30, h:30, d:100}], [{x:60, y:180, w:30, h:30, d:100}], [{x:90, y:180, w:30, h:30, d:100}]);
+    this.sprites[directions.left]     =  new Sprite ([{x:0, y:210, w:30, h:30, d:100}], [{x:30, y:210, w:30, h:30, d:100}], [{x:60, y:210, w:30, h:30, d:100}], [{x:90, y:210, w:30, h:30, d:100}]);
 
     this.inventory = new Inventory(3); // Three inventory storage locations for Items
 }
@@ -677,20 +677,20 @@ window.onload = function() {
         tileSetLoaded = true;
     };
         tileSet.src = tileSetURL;
-    
-    for (x in tileTypes){
-        tileTypes[x]['animated'] = tileTypes[x].sprite.length > 1 ? true : false;
-        if(tileTypes[x].animated){
-            var t = 0;
-            for (s in tileTypes[x].sprite) {
-                tileTypes[x].sprite[s]['start'] = t;
 
-                t+= tileTypes[x].sprite[s].d;
-                tileTypes[x].sprite[s]['end'] = t;
-            }
-            tileTypes[x]['spriteDuration'] = t;
-        }
-    }
+    // for (x in tileTypes){ //02
+    //     tileTypes[x]['animated'] = tileTypes[x].sprite.length > 1 ? true : false;
+    //     if(tileTypes[x].animated){
+    //         var t = 0;
+    //         for (s in tileTypes[x].sprite) {
+    //             tileTypes[x].sprite[s]['start'] = t;
+
+    //             t+= tileTypes[x].sprite[s].d;
+    //             tileTypes[x].sprite[s]['end'] = t;
+    //         }
+    //         tileTypes[x]['spriteDuration'] = t;
+    //     }
+    // }
     mapTileData.buildMapFromData(gameMap, mapW, mapH);
     mapTileData.addRoofs(roofList);
 
@@ -721,17 +721,17 @@ window.onload = function() {
     };
 };
 
-function getFrame(sprite, duration, time, animated){
-    if (!animated){
-        return sprite[0]; // If no animation associated with sprite load index 0 of sprite
-    }
-    time = time % duration;
-    for (x in sprite){
-        if(sprite[x].end >= time){
-            return sprite[x];
-        };
-    };
-};
+// function getFrame(sprite, duration, time, animated){ //SpriteDraw method makes this obsolete
+//     if (!animated){
+//         return sprite[0]; // If no animation associated with sprite load index 0 of sprite
+//     }
+//     time = time % duration;
+//     for (x in sprite){
+//         if(sprite[x].end >= time){
+//             return sprite[x];
+//         };
+//     };
+// };
 
 function drawGame() {
     if (ctx == null) {
@@ -804,7 +804,7 @@ function drawGame() {
                 if (is != null){
 
                     itemTypes[is.type].sprite.draw(gameTime, viewport.offset[0] + (x*tileW) + itemTypes[is.type].offset[0],
-                                                             viewport.offset[1] + (y*tileH) + itemtypes[is.type].offset[1]);
+                                                             viewport.offset[1] + (y*tileH) + itemTypes[is.type].offset[1]);
 
                     // var sprite = itemTypes[is.type].sprite; // 02
 
