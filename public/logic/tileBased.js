@@ -599,6 +599,9 @@ window.onload = function() {
         if (e.keyCode >= 37 && e.keyCode <= 40){
             keysDown[e.keyCode] = true;
         }
+        if (e.keyCode == 80){
+            keysDown[e.keyCode] = true;
+        }
     });
 
     window.addEventListener("keyup", function (e){
