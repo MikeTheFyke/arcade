@@ -599,7 +599,7 @@ window.onload = function() {
         if (e.keyCode >= 37 && e.keyCode <= 40){
             keysDown[e.keyCode] = true;
         }
-        if (e.keyCode == 80){
+        if (e.keyCode == 80){ // Item PickUp
             keysDown[e.keyCode] = true;
         }
     });
@@ -611,6 +611,9 @@ window.onload = function() {
         if (e.keyCode == 83){ // 'S' key to change game speed time
             currentSpeed = (currentSpeed>=(gameSpeeds.length - 1) ? 0 : currentSpeed + 1);
             console.log(currentSpeed);
+        }
+        if (e.keyCode == 80){ // Item Pickup
+            keysDown[e.keyCode] = false;
         }
     });
 
