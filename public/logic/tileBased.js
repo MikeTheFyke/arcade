@@ -567,6 +567,24 @@ Character.prototype.moveDirection = function (d,t){
     }
 };
 
+Character.prototype.pickup = function (){
+    if (this.tileTo[0] != this.tileFrom[0] || this.tileTo[1] != this.tileFrom[1]){
+        return false;
+    }
+    var is = mapTileData.map[toIndex(this.tileFrom[0], this.tileFrom[1])].itemStack;
+
+    if (is != null){
+        var remains = this.inventory.addItems(is.type, is.qty);
+
+        if (remains){
+            is.type = remains;
+        } else {
+            mapTileData.map[toIndex(this.tileFrom[0], this.tileFrom[1])].itemStack = null;
+        }
+    }
+    return true;
+};
+
 function toIndex(x, y){
     return ((y * mapW) + x);
 };
