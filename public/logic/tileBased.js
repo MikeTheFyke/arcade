@@ -43,7 +43,28 @@ function Inventory(s) {  // Created for itemTypes
     this.stacks = [];
 };
 
-var objectCollision = { // Adding objects to map
+Inventory.prototype.addItems = function (id, qty) {
+    for (var i = 0; i < this.spaces; i++){
+        if (this.stacks.length <= 1){
+            var maxhere = (qty > itemTypes[id].maxStack ? itemtypes[id].maxStack : qty);
+            this.stacks.push(new Stack(id, maxHere));
+            qty -= maxHere;
+        } else if (this.stacks[i].type == id && this.stacks[i].qty < itemTypes[id].maxStack){
+            var maxHere = (itemTypes[id].maxStack - this.stacks[i].qty);
+            if (maxHere > qty){
+                maxHere = qty;
+            }
+            this.stack[i].qty += maxHere;
+            qty -= maxHere;
+        }
+        if (qty == 0){
+            return 0;
+        }
+    }
+    return qty;
+};
+
+var objectCollision = { // Adding objects to map (crate and tree)
     none    : 0,
     solid   : 1
 };
