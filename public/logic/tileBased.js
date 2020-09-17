@@ -31,7 +31,17 @@ var itemTypes = {
         sprite   : [{x:120, y:160, w:40, h:40}],
         offset   : [0,0] // setting where item will be placed compared to the top x,y corordinate of the mapTileSet
     }
-}
+};
+
+function Stack(id, qty) { // Created for itemTypes
+    this.type = id;
+    this.qty  = qty;
+};
+
+function Inventory(s) {  // Created for itemTypes
+    this.spaces = s;
+    this.stacks = [];
+};
 
 var objectCollision = { // Adding objects to map
     none    : 0,
