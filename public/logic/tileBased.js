@@ -437,6 +437,12 @@ Character.prototype.canMoveTo = function (x, y){
     if(typeof this.delayMove[tileTypes[mapTileData.map[toIndex(x, y)].type].floor] == 'undefined') {
         return false;
     }
+    if (mapTileDate.map[toIndex(x, y)].object != null){
+        var o = mapTileData.map[toIndex(x, y)].object;
+        if (objectTypes[o.type].collison==objectCollision.solid){ // if object type is solid the player will not be able to traverse
+            return false;
+        }
+    }
     return true;
 };
 
