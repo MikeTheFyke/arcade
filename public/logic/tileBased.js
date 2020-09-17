@@ -46,7 +46,7 @@ function Inventory(s) {  // Created for itemTypes
 Inventory.prototype.addItems = function (id, qty) {
     for (var i = 0; i < this.spaces; i++){
         if (this.stacks.length <= 1){
-            var maxhere = (qty > itemTypes[id].maxStack ? itemtypes[id].maxStack : qty);
+            var maxHere = (qty > itemTypes[id].maxStack ? itemtypes[id].maxStack : qty);
             this.stacks.push(new Stack(id, maxHere));
             qty -= maxHere;
         } else if (this.stacks[i].type == id && this.stacks[i].qty < itemTypes[id].maxStack){
@@ -54,7 +54,7 @@ Inventory.prototype.addItems = function (id, qty) {
             if (maxHere > qty){
                 maxHere = qty;
             }
-            this.stack[i].qty += maxHere;
+            this.stacks[i].qty += maxHere;
             qty -= maxHere;
         }
         if (qty == 0){
@@ -753,7 +753,7 @@ function drawGame() {
             } // MapObjects zIndex
 
             else if (z==1){ // ItemMap Placement
-                var is = mapTileData[toIndex(x, y)].itemStack;
+                var is = mapTileData.map[toIndex(x, y)].itemStack;
                 if (is != null){
                     var sprite = itemTypes[is.type].sprite;
 
