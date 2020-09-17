@@ -426,6 +426,8 @@ function Character(){
     this.sprites[directions.right]    = [{x:0, y:150, w:30, h:30}];
     this.sprites[directions.down]     = [{x:0, y:180, w:30, h:30}];
     this.sprites[directions.left]     = [{x:0, y:210, w:30, h:30}];
+
+    this.inventory = new Inventory(3); // Three inventory storage locations for Items
 }
 
 Character.prototype.placeAt = function (x, y){ // Character initial display coordinates
