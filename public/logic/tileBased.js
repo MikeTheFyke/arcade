@@ -12,7 +12,7 @@ var framesLastSecond = 0;
 var lastFrameTime = 0;
 
 var tileSet = null;
-var tileSetURL = "./public/images/FO-TileBasedSheet4.png";
+var tileSetURL = "./public/images/FO-TileBasedSheet5.png";
 var tileSetLoaded = false;
 
 var gameTime = 0;
@@ -23,6 +23,11 @@ var gameSpeeds = [
     {name:"Pause", mult: 0}
 ];
 var currentSpeed = 0;
+
+var objectCollision = {
+    none    : 0,
+    solid   : 1
+};
 
 // var gameMap = [ // Tile 0 & 3 barriers, Tile 1 & 2 paths, Tile 4 water
 //     //  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 
@@ -315,7 +320,7 @@ function Character(){
     this.delayMove[floorTypes.conveyorL] = 200;
     this.delayMove[floorTypes.conveyorR] = 200;
 
-    this.direction = directions.up;
+    this.direction = directions.down;
     this.sprites = {};
     this.sprites[directions.up]       = [{x:0, y:120, w:30, h:30}];
     this.sprites[directions.right]    = [{x:0, y:150, w:30, h:30}];
