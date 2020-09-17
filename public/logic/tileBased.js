@@ -34,21 +34,21 @@ var objectTypes = {
         name     : "Box",
         sprite   : [{x:240, y:80, w:40, h:40}],
         offset   : [0,0],
-        collison : objectCollision.none,
+        collision : objectCollision.solid,
         zIndex   : 1
     },
     2 : {
         name     : "Broken Box",
         sprite   : [{x:240, y:120, w:40, h:40}],
         offset   : [0,0],
-        collison : objectCollision.none,
+        collision : objectCollision.none,
         zIndex   : 1
     },
     3 : {
         name     : "Tree Top",
         sprite   : [{x:280, y:0, w:80, h:80}],
         offset   : [-20,-20],
-        collison : objectCollision.solid,
+        collision : objectCollision.solid,
         zIndex   : 3
     }
 };
@@ -437,9 +437,10 @@ Character.prototype.canMoveTo = function (x, y){
     if(typeof this.delayMove[tileTypes[mapTileData.map[toIndex(x, y)].type].floor] == 'undefined') {
         return false;
     }
-    if (mapTileDate.map[toIndex(x, y)].object != null){
+    
+    if (mapTileData.map[toIndex(x, y)].object != null){
         var o = mapTileData.map[toIndex(x, y)].object;
-        if (objectTypes[o.type].collison==objectCollision.solid){ // if object type is solid the player will not be able to traverse
+        if (objectTypes[o.type].collision==objectCollision.solid){ // if object type is solid the player will not be able to traverse
             return false;
         }
     }
@@ -646,7 +647,7 @@ function drawGame() {
     for (var y = viewport.startTile[1]; y <= viewport.endTile[1]; y++){ // y corresponds to Y coordinate on map
         for (var x = viewport.startTile[0]; x <= viewport.endTile[0]; x++){ // x corresponds to X coordinate on map
 
-            if (z==0){ // MapObjects zIndex
+            if (z==0) { // MapObjects zIndex
 
             var tile = tileTypes[mapTileData.map[toIndex(x,y)].type];
             // ctx.drawImage(tileSet, tile.sprite[0].x, tile.sprite[0].y, tile.sprite[0].w, tile.sprite[0].h,
@@ -657,8 +658,9 @@ function drawGame() {
 
             } // MapObjects zIndex
 
-            var o = mapTileData[toIndex(x, y)].object; // MapObjects Draw Loop
-            if (0!=null && objectTypes[o.type].zIndex==z){
+            var o = mapTileData.map[toIndex(x, y)].object; // MapObjects Draw Loop
+
+            if (o!=null && objectTypes[o.type].zIndex==z) {
                 var ot = objectTypes[o.type];
 
                 ctx.drawImage(tileSet, ot.sprite[0].x, ot.sprite[0].y, ot.sprite[0].w, ot.sprite[0].h,
@@ -687,9 +689,9 @@ function drawGame() {
                     ctx.drawImage(tileSet, sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h, 
                                 viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1],
                                 player.dimensions[0], player.dimensions[1]);
-        };
+        }
     } // Closing of Z loop
-    
+
      ctx.fillStyle = "#ff0000";
      ctx.fillText("FPS : " + framesLastSecond, 10, 20); // FPS
      if (gameSpeeds[currentSpeed].mult == 0){
