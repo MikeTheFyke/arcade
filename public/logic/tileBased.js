@@ -73,7 +73,7 @@ function PlacedItemStack (id, qty){
 
 PlacedItemStack.prototype.placeAt = function (nx, ny){
     if (mapTileData.map[toIndex(this.x, this.y)].itemStack == this){
-        mapTileDate.map[toIndex(this.x, this.y)].itemStack = null;
+        mapTileData.map[toIndex(this.x, this.y)].itemStack = null;
     }
     this.x = nx;
     this.y = ny;
@@ -306,6 +306,7 @@ function Tile (tx, ty, tt){
     this.roofType   = 0;
     this.eventEnter = null;
     this.object     = null; // ObjectMap
+    this.itemStack  = null; // ItemMap
 }
 
 function TileMap (){
