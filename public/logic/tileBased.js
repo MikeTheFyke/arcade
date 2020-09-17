@@ -639,8 +639,15 @@ function drawGame() {
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, viewport.screen[0], viewport.screen[1]);
 
+    for (var z = 0; z < mapTileData.levels; z++){ // zIndex introduced for MapObjects
+
+    
+
     for (var y = viewport.startTile[1]; y <= viewport.endTile[1]; y++){ // y corresponds to Y coordinate on map
         for (var x = viewport.startTile[0]; x <= viewport.endTile[0]; x++){ // x corresponds to X coordinate on map
+
+            if (z==0){ // MapObjects zIndex
+
             var tile = tileTypes[mapTileData.map[toIndex(x,y)].type];
             // ctx.drawImage(tileSet, tile.sprite[0].x, tile.sprite[0].y, tile.sprite[0].w, tile.sprite[0].h,
             //               viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
@@ -648,25 +655,41 @@ function drawGame() {
 
             ctx.drawImage(tileSet, sprite.x, sprite.y, sprite.w, sprite.h, viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
 
-            if (mapTileData.map[toIndex(x, y)].roofType != 0       && 
+            } // MapObjects zIndex
+
+            var o = mapTileData[toIndex(x, y)].object; // MapObjects Draw Loop
+            if (0!=null && objectTypes[o.type].zIndex==z){
+                var ot = objectTypes[o.type];
+
+                ctx.drawImage(tileSet, ot.sprite[0].x, ot.sprite[0].y, ot.sprite[0].w, ot.sprite[0].h,
+                              viewport.offset[0] + (x*tileW) + ot.offset[0], viewport.offset[1] + (y*tileH) + ot.offset[1],
+                              ot.sprite[0].w, ot.sprite[0].h );
+            }
+
+            if (z == 2 && // MapObjects added zIndex to roof of 2
+                mapTileData.map[toIndex(x, y)].roofType != 0       && 
                 mapTileData.map[toIndex(x, y)].roof != playerRoof1 && 
                 mapTileData.map[toIndex(x, y)].roof != playerRoof2)  {
+
                     tile = tileTypes[mapTileData.map[toIndex(x, y)].roofType];
                     sprite = getFrame(tile.sprite, tile.spriteDuration, gameTime, tile.animated);
                     
                     ctx.drawImage(tileSet, sprite.x, sprite.y, sprite.w, sprite.h, viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
-                }
+            }
         };
     };
 
     //  ctx.fillStyle = "#0000ff"; // Draw Player
     //  ctx.fillRect(viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1], player.dimensions[0], player.dimensions[1]);
 
-    var sprite = player.sprites[player.direction]; // new Draw Player with sprite sheet
-    ctx.drawImage(tileSet, sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h, 
-                  viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1],
-                  player.dimensions[0], player.dimensions[1]);
-
+        if (z==1){ // MapObjects Added a zIndex to player of 1
+                    var sprite = player.sprites[player.direction]; // new Draw Player with sprite sheet
+                    ctx.drawImage(tileSet, sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h, 
+                                viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1],
+                                player.dimensions[0], player.dimensions[1]);
+        };
+    } // Closing of Z loop
+    
      ctx.fillStyle = "#ff0000";
      ctx.fillText("FPS : " + framesLastSecond, 10, 20); // FPS
      if (gameSpeeds[currentSpeed].mult == 0){
