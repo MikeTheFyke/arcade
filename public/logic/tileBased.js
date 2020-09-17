@@ -24,6 +24,27 @@ var gameSpeeds = [
 ];
 var currentSpeed = 0;
 
+function Sprite(data){
+    this.animated   = data.length > 1;
+    this.frameCount = data.length;
+    this.duration   = 0;
+    this.loop       = true;
+
+    if (data.length > 1){
+        for (var i in data){
+            if(typeof data[i].d == 'undefined'){
+                data[i].d = 100;
+            }
+            this.duration += data[i].d;
+
+            if (typeof data[i].loop != 'undefined'){
+                this.loop = data[i].loop ? true : false;
+            }
+        }
+    }
+    this. frames = data;
+};
+
 var itemTypes = {
     1 : {
         name     : "Star",
