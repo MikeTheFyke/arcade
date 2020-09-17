@@ -660,6 +660,14 @@ window.onload = function() {
     var mo7 = new MapObject(3);  mo7.placeAt(2,  6);
     var mo8 = new MapObject(3);  mo8.placeAt(2,  9);
     var mo9 = new MapObject(3);  mo9.placeAt(2, 12);
+
+    for (var i = 3; i < 8; i++){ // Item Loops for Star Items
+        var ps = new PlacedItemStack(1,1); ps.placeAt(i, 1);
+    };
+
+    for (var i = 3; i < 8; i++){ // Item Loops for Star Items
+        var ps = new PlacedItemStack(1,1); ps.placeAt(3, 1);
+    };
 };
 
 function getFrame(sprite, duration, time, animated){
