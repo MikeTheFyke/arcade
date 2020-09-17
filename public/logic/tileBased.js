@@ -59,6 +59,15 @@ function MapObject(nt){
     this.type = nt;
 }
 
+MapObject.prototype.placeAt = function (nx, ny){
+    if (mapTileData.map[toIndex(this.x, this.y)].object == this){ // removes instance of object if already been placed
+        mapTileData.map[toIndex(this.x, this.y)].object = null;
+    }
+    this.x  = nx;
+    this.y  = ny;
+
+    mapTileData.map[toIndex(nx, ny)].object = this;
+};
 
 // var gameMap = [ // Tile 0 & 3 barriers, Tile 1 & 2 paths, Tile 4 water
 //     //  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 
