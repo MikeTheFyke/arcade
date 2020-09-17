@@ -320,27 +320,27 @@ var floorTypes = {
 var tileTypes = {
     0 : {color: "#685b48", floor:floorTypes.solid, sprite: new Sprite ([{x:0,   y:0, w:40, h:40}])},
     1 : {color: "#5aa457", floor:floorTypes.grass, sprite: new Sprite ([{x:40,  y:0, w:40, h:40}])},
-    2 : {color: "#e8bd7a", floor:floorTypes.path,  sprite: new sprite ([{x:80,  y:0, w:40, h:40}])},
-    3 : {color: "#286625", floor:floorTypes.solid, sprite: new sprite ([{x:120, y:0, w:40, h:40}])},
-    4 : {color: "#678fd9", floor:floorTypes.water, sprite: new sprite ([{x:160, y:0,  w:40, h:40, d:200}, {x:200, y:0,  w:40, h:40, d:200},
+    2 : {color: "#e8bd7a", floor:floorTypes.path,  sprite: new Sprite ([{x:80,  y:0, w:40, h:40}])},
+    3 : {color: "#286625", floor:floorTypes.solid, sprite: new Sprite ([{x:120, y:0, w:40, h:40}])},
+    4 : {color: "#678fd9", floor:floorTypes.water, sprite: new Sprite ([{x:160, y:0,  w:40, h:40, d:200}, {x:200, y:0,  w:40, h:40, d:200},
                                                                         {x:160, y:40, w:40, h:40, d:200}, {x:200, y:40, w:40, h:40, d:200},
                                                                         {x:160, y:40, w:40, h:40, d:200}, {x:200, y:0,  w:40, h:40, d:200}
                                                                       ])},
-    5 : {color: "#eeeeff", floor:floorTypes.ice,       sprite: new sprite ([{x:120,   y:120, w:40, h:40}])},
-    6 : {color: "#cccccc", floor:floorTypes.conveyorL, sprite: new sprite ([{x:  0,   y: 40, w:40, h:40, d:200}, {x: 40,   y: 40, w:40, h:40, d:200},
+    5 : {color: "#eeeeff", floor:floorTypes.ice,       sprite: new Sprite ([{x:120,   y:120, w:40, h:40}])},
+    6 : {color: "#cccccc", floor:floorTypes.conveyorL, sprite: new Sprite ([{x:  0,   y: 40, w:40, h:40, d:200}, {x: 40,   y: 40, w:40, h:40, d:200},
                                                                             {x: 80,   y: 40, w:40, h:40, d:200}, {x:120,   y: 40, w:40, h:40, d:200}
                                                                           ])},
-    7 : {color: "#cccccc", floor:floorTypes.conveyorR, sprite: new sprite ([{x: 120,   y: 80, w:40, h:40, d:200}, {x: 80,   y: 80, w:40, h:40, d:200},
+    7 : {color: "#cccccc", floor:floorTypes.conveyorR, sprite: new Sprite ([{x: 120,   y: 80, w:40, h:40, d:200}, {x: 80,   y: 80, w:40, h:40, d:200},
                                                                             {x:  40,   y: 80, w:40, h:40, d:200}, {x:  0,   y: 80, w:40, h:40, d:200}
                                                                            ])},
-    8 : {color: "#cccccc", floor:floorTypes.conveyorD, sprite: new sprite ([{x: 160,   y:200, w:40, h:40, d:200}, {x:160,   y:160, w:40, h:40, d:200},
+    8 : {color: "#cccccc", floor:floorTypes.conveyorD, sprite: new Sprite ([{x: 160,   y:200, w:40, h:40, d:200}, {x:160,   y:160, w:40, h:40, d:200},
                                                                             {x: 160,   y:120, w:40, h:40, d:200}, {x:160,   y: 80, w:40, h:40, d:200}
                                                                            ])},
-    9 : {color: "#cccccc", floor:floorTypes.conveyorU, sprite: new sprite ([{x: 200,   y: 80, w:40, h:40, d:200}, {x:200,   y:120, w:40, h:40, d:200},
+    9 : {color: "#cccccc", floor:floorTypes.conveyorU, sprite: new Sprite ([{x: 200,   y: 80, w:40, h:40, d:200}, {x:200,   y:120, w:40, h:40, d:200},
                                                                             {x: 200,   y:160, w:40, h:40, d:200}, {x:200,   y:200, w:40, h:40, d:200}
                                                                            ])},
-    10 : {color: "#ccaa00", floor:floorTypes.solid,  sprite: new sprite ([{x:240,  y: 0, w:40, h:40}])},
-    11 : {color: "#ccaa00", floor:floorTypes.solid,  sprite: new sprite ([{x:240,  y:40, w:40, h:40}])}
+    10 : {color: "#ccaa00", floor:floorTypes.solid,  sprite: new Sprite ([{x:240,  y: 0, w:40, h:40}])},
+    11 : {color: "#ccaa00", floor:floorTypes.solid,  sprite: new Sprite ([{x:240,  y:40, w:40, h:40}])}
 };
 
 function Tile (tx, ty, tt){
@@ -467,10 +467,10 @@ function Character(){
 
     this.direction = directions.down;
     this.sprites = {};
-    this.sprites[directions.up]       = [{x:0, y:120, w:30, h:30}];
-    this.sprites[directions.right]    = [{x:0, y:150, w:30, h:30}];
-    this.sprites[directions.down]     = [{x:0, y:180, w:30, h:30}];
-    this.sprites[directions.left]     = [{x:0, y:210, w:30, h:30}];
+    this.sprites[directions.up]       =  new Sprite ([{x:0, y:120, w:30, h:30}]);
+    this.sprites[directions.right]    =  new Sprite ([{x:0, y:150, w:30, h:30}]);
+    this.sprites[directions.down]     =  new Sprite ([{x:0, y:180, w:30, h:30}]);
+    this.sprites[directions.left]     =  new Sprite ([{x:0, y:210, w:30, h:30}]);
 
     this.inventory = new Inventory(3); // Three inventory storage locations for Items
 }
@@ -788,24 +788,30 @@ function drawGame() {
 
             if (z==0) { // MapObjects zIndex
 
-            var tile = tileTypes[mapTileData.map[toIndex(x,y)].type];
-            // ctx.drawImage(tileSet, tile.sprite[0].x, tile.sprite[0].y, tile.sprite[0].w, tile.sprite[0].h,
-            //               viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
-            var sprite = getFrame(tile.sprite, tile.spriteDuration, gameTime, tile.animated);
+            tileTypes[mapTileData.map[toIndex(x, y)].type].sprite.draw(gameTime, viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH));
 
-            ctx.drawImage(tileSet, sprite.x, sprite.y, sprite.w, sprite.h, viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
+            // ctx.drawImage(tileSet, tile.sprite[0].x, tile.sprite[0].y, tile.sprite[0].w, tile.sprite[0].h, // 01
+            //               viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
+
+            // var tile = tileTypes[mapTileData.map[toIndex(x,y)].type]; // 02
+            // var sprite = getFrame(tile.sprite, tile.spriteDuration, gameTime, tile.animated);
+            // ctx.drawImage(tileSet, sprite.x, sprite.y, sprite.w, sprite.h, viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
 
             } // MapObjects zIndex
 
             else if (z==1){ // ItemMap Placement
                 var is = mapTileData.map[toIndex(x, y)].itemStack;
                 if (is != null){
-                    var sprite = itemTypes[is.type].sprite;
 
-                    ctx.drawImage(tileSet, sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h,
-                        viewport.offset[0] + (x*tileW) + itemTypes[is.type].offset[0], viewport.offset[1] + (y*tileH) + itemTypes[is.type].offset[1],
-                        sprite[0].w, sprite[0].h
-                        );
+                    itemTypes[is.type].sprite.draw(gameTime, viewport.offset[0] + (x*tileW) + itemTypes[is.type].offset[0],
+                                                             viewport.offset[1] + (y*tileH) + itemtypes[is.type].offset[1]);
+
+                    // var sprite = itemTypes[is.type].sprite; // 02
+
+                    // ctx.drawImage(tileSet, sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h,
+                    //     viewport.offset[0] + (x*tileW) + itemTypes[is.type].offset[0], viewport.offset[1] + (y*tileH) + itemTypes[is.type].offset[1],
+                    //     sprite[0].w, sprite[0].h
+                    //     );
                 };
             };
 
@@ -814,9 +820,12 @@ function drawGame() {
             if (o!=null && objectTypes[o.type].zIndex==z) {
                 var ot = objectTypes[o.type];
 
-                ctx.drawImage(tileSet, ot.sprite[0].x, ot.sprite[0].y, ot.sprite[0].w, ot.sprite[0].h,
-                              viewport.offset[0] + (x*tileW) + ot.offset[0], viewport.offset[1] + (y*tileH) + ot.offset[1],
-                              ot.sprite[0].w, ot.sprite[0].h );
+                ot.sprite.draw(gameTime, viewport.offset[0] + (x*tileW) + ot.offset[0],
+                                         viewport.offset[1] + (y*tileH) + ot.offset[1]);
+
+                // ctx.drawImage(tileSet, ot.sprite[0].x, ot.sprite[0].y, ot.sprite[0].w, ot.sprite[0].h, // 02
+                //               viewport.offset[0] + (x*tileW) + ot.offset[0], viewport.offset[1] + (y*tileH) + ot.offset[1],
+                //               ot.sprite[0].w, ot.sprite[0].h );
             }
 
             if (z == 2 && // MapObjects added zIndex to roof of 2
@@ -824,10 +833,12 @@ function drawGame() {
                 mapTileData.map[toIndex(x, y)].roof != playerRoof1 && 
                 mapTileData.map[toIndex(x, y)].roof != playerRoof2)  {
 
-                    tile = tileTypes[mapTileData.map[toIndex(x, y)].roofType];
-                    sprite = getFrame(tile.sprite, tile.spriteDuration, gameTime, tile.animated);
-                    
-                    ctx.drawImage(tileSet, sprite.x, sprite.y, sprite.w, sprite.h, viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
+                    tileTypes[mapTileData.map[toIndex(x, y)].roofType].sprite.draw(gameTime, viewport.offset[0] + (x*tileW), 
+                                                                                             viewport.offset[1] + (y*tileH));
+
+                    // tile = tileTypes[mapTileData.map[toIndex(x, y)].roofType];
+                    // sprite = getFrame(tile.sprite, tile.spriteDuration, gameTime, tile.animated);
+                    // ctx.drawImage(tileSet, sprite.x, sprite.y, sprite.w, sprite.h, viewport.offset[0] + (x*tileW), viewport.offset[1] + (y*tileH), tileW, tileH);
             }
         };
     };
@@ -836,10 +847,14 @@ function drawGame() {
     //  ctx.fillRect(viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1], player.dimensions[0], player.dimensions[1]);
 
         if (z==1){ // MapObjects Added a zIndex to player of 1
-                    var sprite = player.sprites[player.direction]; // new Draw Player with sprite sheet
-                    ctx.drawImage(tileSet, sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h, 
-                                viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1],
-                                player.dimensions[0], player.dimensions[1]);
+
+            player.sprites[player.direction].draw(gameTime, viewport.offset[0] + player.position[0],
+                                                           viewport.offset[1] + player.position[1]);
+
+                    // var sprite = player.sprites[player.direction]; // new Draw Player with sprite sheet // 02
+                    // ctx.drawImage(tileSet, sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h, 
+                    //             viewport.offset[0] + player.position[0], viewport.offset[1] + player.position[1],
+                    //             player.dimensions[0], player.dimensions[1]);
         }
     } // Closing of Z loop
 
@@ -849,10 +864,13 @@ function drawGame() {
 
         if (typeof player.inventory.stacks[i] != 'undefined'){
             var it = itemTypes[player.inventory.stacks[i].type];
-            var sprite = it.sprite;
+            
+            it.sprite.draw(gameTime, 10 + (i*50) + it.offset[0], 350 + it.offset[1]);
 
-            ctx.drawImage(tileSet, sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h, 10 + (i * 50) + it.offset[0],
-                           350 + it.offset[1], sprite[0].w, sprite[0].h );
+            // var sprite = it.sprite; //02
+
+            // ctx.drawImage(tileSet, sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h, 10 + (i * 50) + it.offset[0],
+            //                350 + it.offset[1], sprite[0].w, sprite[0].h );
             
             if (player.inventory.stacks[i].qty > 1){
                 ctx.fillStyle = "#000000";
