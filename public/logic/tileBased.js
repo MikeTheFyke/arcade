@@ -248,12 +248,14 @@ function Tile (tx, ty, tt){
     this.roof       = null;
     this.roofType   = 0;
     this.eventEnter = null;
+    this.object     = null; // ObjectMap
 }
 
 function TileMap (){
-    this.map   = [];
-    this.w     =  0;
-    this.h     =  0;
+    this.map    = [];
+    this.w      =  0;
+    this.h      =  0;
+    this.levels =  4; // ObjectMap hardcoded - Should be created dynamically
 }
 
 TileMap.prototype.buildMapFromData = function(d, w, h){
