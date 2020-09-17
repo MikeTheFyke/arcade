@@ -24,6 +24,15 @@ var gameSpeeds = [
 ];
 var currentSpeed = 0;
 
+var itemTypes = {
+    1 : {
+        name     : "Star",
+        maxStack : 2,
+        sprite   : [{x:120, y:160, w:40, h:40}],
+        offset   : [0,0] // setting where item will be placed compared to the top x,y corordinate of the mapTileSet
+    }
+}
+
 var objectCollision = { // Adding objects to map
     none    : 0,
     solid   : 1
