@@ -45,6 +45,30 @@ function Sprite(data){
     this. frames = data;
 };
 
+Sprite.prototype.draw = function(t, x, y){
+    var frameIdx = 0;
+
+    if (!this.loop && this.animated && t >= this.duration){
+        frameIdx = (this.frames.length - 1);
+    } else if (this.animated){
+        t = t % duration;
+        var totalD = 0;
+
+        for (var i in this.frames){
+            totalD += this.frames[i].d;
+            frameIdx = 1;
+
+            if (t <= totalD){
+                break;
+            }
+        }
+    }
+    var offset = (typeof this.frames[frameIdx].offset =='undefined' ? [0,0] : this.frames[frameIdx].offset);
+
+    ctx.drawImage(tileSet, this.frames[frameIdx].x, this.frames[frameIdx].y, this.frames[frameIdx].w, this.frames[frameIdx].h,
+                   x + offset[0], y + offset[1], this.frames[framesIdx].w, this.frames[framesIdx].h);
+};
+
 var itemTypes = {
     1 : {
         name     : "Star",
