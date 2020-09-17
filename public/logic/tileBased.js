@@ -744,6 +744,18 @@ function drawGame() {
 
             } // MapObjects zIndex
 
+            else if (z==1){ // ItemMap Placement
+                var is = mapTileData[toIndex(x, y)].itemStack;
+                if (is != null){
+                    var sprite = itemTypes[is.type].sprite;
+
+                    ctx.drawImage(tileSet, sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h,
+                        viewport.offset[0] + (x*tileW) + itemTypes[is.type].offset[0], viewport.offset[1] + (y*tileH) + itemTypes[is.type].offset[1],
+                        sprite[0].w, sprite[0].h
+                        );
+                };
+            };
+
             var o = mapTileData.map[toIndex(x, y)].object; // MapObjects Draw Loop
 
             if (o!=null && objectTypes[o.type].zIndex==z) {
