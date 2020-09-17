@@ -24,9 +24,33 @@ var gameSpeeds = [
 ];
 var currentSpeed = 0;
 
-var objectCollision = {
+var objectCollision = { // Adding objects to map
     none    : 0,
     solid   : 1
+};
+
+var objectTypes = {
+    1 : {
+        name     : "Box",
+        sprite   : [{x:240, y:80, w:40, h:40}],
+        offset   : [0,0],
+        collison : objectCollision.none,
+        zIndex   : 1
+    },
+    2 : {
+        name     : "Broken Box",
+        sprite   : [{x:240, y:120, w:40, h:40}],
+        offset   : [0,0],
+        collison : objectCollision.none,
+        zIndex   : 1
+    },
+    3 : {
+        name     : "Tree Top",
+        sprite   : [{x:280, y:0, w:80, h:80}],
+        offset   : [-20,-20],
+        collison : objectCollision.solid,
+        zIndex   : 3
+    }
 };
 
 // var gameMap = [ // Tile 0 & 3 barriers, Tile 1 & 2 paths, Tile 4 water
