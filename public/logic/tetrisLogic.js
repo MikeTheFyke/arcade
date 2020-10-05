@@ -158,12 +158,13 @@ const checkCanMove = (block, field) => {
     return !cells.some((rows, i) => {
         return rows.some((cells, j) => {
             if (
-                (cell && x + j < 0) ||
-                (cell && x + j >= numberOfCols) ||
-                (cell && field[y + i][x+ j])
+                (cells && x + j < 0) ||
+                (cells && x + j >= numberOfCols) ||
+                (cells && field[y + i][x+ j])
             ) return true;
         })
     })
+    return true;
 }
 
 const render = (game, block, time) => {
