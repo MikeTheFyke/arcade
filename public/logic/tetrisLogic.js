@@ -22,6 +22,25 @@ const sType = [
     [0, 0, 0]
 ]
 
+const iType = [
+    [0, 3, 0, 0],
+    [0, 3, 0, 0],
+    [0, 3, 0, 0],
+    [0, 3, 0, 0]
+]
+
+const lType = [
+    [4, 0, 0],
+    [4, 0, 0],
+    [4, 4, 0]
+]
+
+const jType = [
+    [0, 0, 5],
+    [0, 0, 5],
+    [0, 5, 5]
+]
+
 class  Block {
     constructor(cells, x, y) {
         this.cells = cells
