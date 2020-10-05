@@ -206,13 +206,33 @@ const render = (game, block, time) => {
         block.cells = prevBlockCells
     }
 
+    if (position.y > prevPosition.y) {
+        position.y = prevPosition.y + 1
+    }
+
     block.findCollison(field)
     if (block.isAlive){
         insertIntoArray(block.cells, field, position.y, position.x);
         drawField(field, ctx);
         prevPosition = Object.assign({}, position);
         prevBlockCells = [].concat(block.cells);
+    } else if (prevPosition.y > block.cells.length - 1) {
+        insertIntoArray(block.cells, field, prevPosition.y, prevPosition.x);
+        game.field = findFilledRow(field);
+        drawField(game.field, ctx);
+        block = null;
+    } else {
+        insertIntoArray(block.cells, field, prevPosition.y, prevPosition.x);
+        const lastBlock = block.cells.filter((row) => !row.every((cell) => !cell)).slice(prevPosition.y)
+        insertIntoArray(lastBlock, field, 0, position.x);
+        drawField(game.field, ctx);
+        setTimeout(() => { alert('Game Over') }, 0)
+        game.field = generateField(numberOfRows + 4, numberOfCols)
+        updateScore(0);
+        block = null;
     }
+
+
     requestAnimationFrame((time) => render(game, block, time));
 }
 
@@ -233,6 +253,16 @@ const insertIntoArray = (childArr, parrentArr, row, col, clearMode) => {
     i++;
     }
 };
+
+let score = 0;
+const generateFilledRow = (field) => {
+    const filteredField = field.filter((row) => row.some((cell) => (cell === 0)))
+    const diff = field.length - filteredField.length;
+    score += diff * 100;
+    updateScore(score);
+    const filledArr = generateField(diff, numberOfCols);
+    return [...filledArr, ...filteredField];
+}
 
 const generateField = (rows, cols) => {
     const field = Array.from({length: rows},
