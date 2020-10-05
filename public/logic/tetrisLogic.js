@@ -151,6 +151,7 @@ const render = (game, block, time) => {
         const x          = ((numberOfCols - blockType.length) /2) | 0
         block = new Block(blockType, x, 0)
         prevPosition = { x, y: 0}
+        addEventListener('keydown', (e) => block.moveBlockByEvent.bind(block)(e))
     }
     const { ctx, field } = game
     const { position } = block
