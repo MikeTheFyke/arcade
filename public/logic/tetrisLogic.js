@@ -124,6 +124,14 @@ const render = (game, block, time) => {
         block.cells = prevBlockCells
     }
 
+    block.findCollison(field)
+    if (block.isAlive){
+        insertIntoArray(block.cells, field, position.y, position.x);
+        drawField(field, ctx);
+        prevPosition = Object.assign({}, position);
+        prevBlockCells = [].comcat(block.cells);
+    }
+
 }
 
 const insertIntoArray = (childArr, parrentArr, row, col, clearMode) => {
