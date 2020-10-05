@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="/public/assets/pong.css" type="text/css" />
+    <link rel="stylesheet" href="/public/assets/tetris.css" type="text/css" />
     <link rel="stylesheet" href="/public/assets/indexStyles.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>MIFY tetris</title>
@@ -9,7 +9,8 @@
 <body>
   <%- include ('partials/_header.ejs') %>
         <div id="tetrisContainer">
-            <canvas id="tetrisCanvas" width="800" height="500"></canvas>
+            <div id="score">0</div>
+            <canvas id="tetrisCanvas" width="300" height="600"></canvas>
         </div>
 </body>
 <script src="./public/logic/headerLogic.js"></script>
