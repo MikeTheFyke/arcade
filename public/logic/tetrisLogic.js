@@ -41,6 +41,17 @@ const jType = [
     [0, 5, 5]
 ]
 
+const oType = [
+    [6, 6],
+    [6, 6]
+]
+
+const tType = [
+    [0, 7, 0],
+    [7, 7, 7],
+    [0, 0, 0]
+]
+
 class  Block {
     constructor(cells, x, y) {
         this.cells = cells
