@@ -104,6 +104,17 @@ class Block {
         this.isAlive = true
     }
 
+    rotate() {
+        const newCells = []
+        for (let i = 0; i < this.cells.length; i++){
+            newCells[i] = []
+            for (let j = 0; j < this.cells.length; j++){
+                newCells[i][j] = this.cells[this.cells.length - 1 - j][i]
+            }
+        }
+        this.cells = newCells;
+    }
+
     moveBlockByEvent(e){
         e.preventDefault();
         switch(e.key){
@@ -122,7 +133,7 @@ class Block {
                 break
             }
             case 'ArrowUp': {
-                // this.position.x--
+                this.rotate();
                 break
             }
         }
