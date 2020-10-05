@@ -52,6 +52,16 @@ const tType = [
     [0, 0, 0]
 ]
 
+const blockColors = [
+    'limegreen',
+    'darkorange',
+    'mediumorchid',
+    'dodgerblue',
+    'orangered',
+    'cornflowerblue',
+    'tomato'
+]
+
 const blockTypes = {
     zType,
     sType,
@@ -62,6 +72,10 @@ const blockTypes = {
     tType
 }
 
+const fps = 24;
+const counterOfF = 0;
+const prevTime = 0;
+
 class  Block {
     constructor(cells, x, y) {
         this.cells = cells
@@ -71,7 +85,18 @@ class  Block {
 }
 
 const render = (game, block, time) => {
+    if (!block) {
+        const arrOfTypes = Object.values(blockTypes)
+        const blockType  = arrOfTypes[arrOfTypes.length * Math.random() | 0]
+        const x          = ((numberOfCols - blockType.length) /2) | 0
+        block = new Block(blockType, x, 0)
+    }
+    const { ctx, field } = game
+    const { position } = block
 
+    if (time - prevTime > 1000 / fps){
+        counterOfF++
+    }
 }
 
 const generateField = (rows, cols) => {
