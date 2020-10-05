@@ -169,6 +169,11 @@ app.get("/tileBased", (req, res) => {
     res.render("tileBased");
 });
 
+/// Tile Based Canvas Route
+app.get("/tetris", (req, res) => {
+    res.render("tetris");
+});
+
 app.get("/zone00.json", (req, res) => {
     res.json(zone00);
 });
