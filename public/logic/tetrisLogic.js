@@ -1,8 +1,5 @@
-const canvas = document.getElementById('tetrisCanvas');
-const ctx = canvas.getContext('2d');
-
-const canvasWidth = canvas.width;
-const canvasHeight = canvas.clientHeight;
+const canvasWidth = 300;
+const canvasHeight = 600;
 
 const numberOfRows = 20;
 const numberOfCols = 10;
@@ -59,7 +56,7 @@ const blockColors = [
     'dodgerblue',
     'orangered',
     'cornflowerblue',
-    'tomato'
+    'tomato',
 ]
 
 const blockTypes = {
@@ -69,43 +66,18 @@ const blockTypes = {
     lType,
     jType,
     oType,
-    tType
+    tType,
 }
-
-const drawField = (field, ctx) => {
-    field.forEach ((row, rowIndex) => {
-        row.forEach ((cell, columnIndex) => {
-            ctx.fillStyle = cell ? blockColors[cell - 1] : 'lightblue'
-            ctx.strokeStyle = '#555'
-            ctx.lineWidth = borderSize
-
-            const args = [
-                columnIndex * cellSize, rowIndex * cellSize, cellSize, cellSize
-            ]
-            ctx.fillRect(...args)
-            ctx.strokeRect(...args)
-        })
-    })
-}
-const { requestAnimationFrame } = window;
-
-const fps = 24;
-let counterOfF = 0;
-let prevTime = 0;
-const timeToMoveDown = 500;
-
-let prevPosition = { x: 0, y: 0};
-let prevBlockCells = [[]];
 
 class Block {
     constructor(cells, x, y) {
-        this.cells = cells
-        this.position = {x, y}
-        this.isAlive = true
+        this.cells = cells ;
+        this.position = {x, y} ;
+        this.isAlive = true ;
     }
 
     rotate() {
-        const newCells = []
+        const newCells = [] ;
         for (let i = 0; i < this.cells.length; i++){
             newCells[i] = []
             for (let j = 0; j < this.cells.length; j++){
@@ -143,16 +115,18 @@ class Block {
         const { x, y } = this.position
         this.cells.forEach((rows, i) => {
             rows.forEach((cell, j) => {
-                if (cell && ((y + i >= numberOfRows) || field [y + i][x + j])){
+                if (cell && ((y + i >= numberOfRows) || field[y + i][x + j])) {
                     this.isAlive = false
-                    return;
+                    return
                 }
             })
         })
     }
 }
 
-const checkCanMove = (block, field) => {
+Block.timeToChange = 1000;
+
+const canMoveLeft = (block, field) => {
     const { cells, position } = block;
     const { x, y } = position;
     return !cells.some((rows, i) => {
@@ -160,17 +134,42 @@ const checkCanMove = (block, field) => {
             if (
                 (cells && x + j < 0) ||
                 (cells && x + j >= numberOfCols) ||
-                (cells && field[y + i][x+ j])
-            ) return true;
+                (cells && field[y + i][x + j])
+            ) return true
         })
     })
-    return true;
+    return true
 }
 
 const updateScore = (score) => {
     const scoreElement = document.getElementById('score')
     scoreElement.innerHTML = score;
 }
+
+const drawField = (field, ctx) => {
+    field.forEach ((row, rowIndex) => {
+        row.forEach ((cell, columnIndex) => {
+            ctx.fillStyle = cell ? blockColors[cell - 1] : 'lightblue'
+            ctx.strokeStyle = '#555'
+            ctx.lineWidth = borderSize
+
+            const args = [
+                columnIndex * cellSize, rowIndex * cellSize, cellSize, cellSize,
+            ]
+            ctx.fillRect(...args)
+            ctx.strokeRect(...args)
+        })
+    })
+}
+
+const { requestAnimationFrame } = window;
+const fps = 24;
+const timeToMoveDown = 500;
+
+let counterOfF = 0;
+let prevTime = 0;
+let prevPosition = { x: 0, y: 0};
+let prevBlockCells = [[]];
 
 const render = (game, block, time) => {
     if (!block) {
@@ -180,27 +179,28 @@ const render = (game, block, time) => {
         block = new Block(blockType, x, 0)
         prevPosition = { x, y: 0}
         addEventListener('keydown', (e) => block.moveBlockByEvent.bind(block)(e))
-        
     }
+
     const { ctx, field } = game
     const { position } = block
 
-    if (time - prevTime > 1000 / fps){
+    if (time - prevTime > 1000 / fps) {
         counterOfF++
-        if (counterOfF === (fps * timeToMoveDown) / 1000){
+        if (counterOfF === (fps * timeToMoveDown) / 1000) {
             counterOfF = 0
-            if (block && block.alive){
+            if (block && block.isAlive){
                 position.y++ ;
             } else {
                 block = null;
             }
         }
-    }
+
     prevTime = time;
 
     insertIntoArray(prevBlockCells, field, prevPosition.y, prevPosition.x, true);
 
-    const canMove = checkCanMove(block, field)
+    const canMove = canMoveLeft(block, field)
+
     if (!canMove) {
         position.x = prevPosition.x
         block.cells = prevBlockCells
@@ -222,8 +222,8 @@ const render = (game, block, time) => {
         drawField(game.field, ctx);
         block = null;
     } else {
-        insertIntoArray(block.cells, field, prevPosition.y, prevPosition.x);
-        const lastBlock = block.cells.filter((row) => !row.every((cell) => !cell)).slice(prevPosition.y)
+        insertIntoArray(prevBlockCells, field, prevPosition.y, prevPosition.x);
+        const lastBlock = block.cells.filter((row) => !row.every((cell) => !cell)).slice(-prevPosition.y)
         insertIntoArray(lastBlock, field, 0, position.x);
         drawField(game.field, ctx);
         setTimeout(() => { alert('Game Over') }, 0)
@@ -231,8 +231,7 @@ const render = (game, block, time) => {
         updateScore(0);
         block = null;
     }
-
-
+}
     requestAnimationFrame((time) => render(game, block, time));
 }
 
@@ -255,7 +254,8 @@ const insertIntoArray = (childArr, parrentArr, row, col, clearMode) => {
 };
 
 let score = 0;
-const generateFilledRow = (field) => {
+
+const findFilledRow = (field) => {
     const filteredField = field.filter((row) => row.some((cell) => (cell === 0)))
     const diff = field.length - filteredField.length;
     score += diff * 100;
@@ -271,6 +271,9 @@ const generateField = (rows, cols) => {
 }
 
 window.onload = () => {
+    const canvas = document.getElementById('tetrisCanvas');
+    const ctx = canvas.getContext('2d');
+    
     const game = {
         ctx,
         field: generateField(numberOfRows + 4, numberOfCols),
