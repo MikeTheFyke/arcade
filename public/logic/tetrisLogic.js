@@ -72,6 +72,23 @@ const blockTypes = {
     tType
 }
 
+const drawField = (field, ctx) => {
+    field.forEach ((row, rowIndex) => {
+        row.forEach ((cell, columnIndex) => {
+            ctx.fillStyle = cell ? blockColors[cell - 1] : 'lightblue'
+            ctx.strokeStyle = '#555'
+            ctx.lineWidth = borderSize
+
+            const args = [
+                columnIndex * cellSize, rowIndex * cellSize, cellSize, cellSize
+            ]
+            ctx.fillRect(...args)
+            ctx.strokeRect(...args)
+        })
+    })
+}
+const { requestAnimationFrame } = window;
+
 const fps = 24;
 let counterOfF = 0;
 let prevTime = 0;
@@ -85,6 +102,18 @@ class  Block {
         this.cells = cells
         this.position = {x, y}
         this.isAlive = true
+    }
+
+    findCollison(field){
+        const { x, y } = this.position
+        this.cells.forEach((rows, i) => {
+            rows.forEach((cell, j) => {
+                if (cell && ((y + i >= numberOfRows) || field [y + i][x + j])){
+                    this.isAlive = false
+                    return;
+                }
+            })
+        })
     }
 }
 
@@ -129,9 +158,9 @@ const render = (game, block, time) => {
         insertIntoArray(block.cells, field, position.y, position.x);
         drawField(field, ctx);
         prevPosition = Object.assign({}, position);
-        prevBlockCells = [].comcat(block.cells);
+        prevBlockCells = [].concat(block.cells);
     }
-
+    requestAnimationFrame((time) => render(game, block, time));
 }
 
 const insertIntoArray = (childArr, parrentArr, row, col, clearMode) => {
@@ -155,6 +184,7 @@ const insertIntoArray = (childArr, parrentArr, row, col, clearMode) => {
 const generateField = (rows, cols) => {
     const field = Array.from({length: rows},
         () => Array.from({length: cols}, () => 0))
+        return field;
 }
 
 window.onload = () => {
