@@ -112,6 +112,13 @@ const render = (game, block, time) => {
     prevTime = time;
 
     insertIntoArray(prevBlockCells, field, prevPosition.y, prevPosition.x, true);
+
+    const canMove = checkCanMove(block, field)
+    if (!canMove) {
+        position.x = prevPosition.x
+        block.cells = prevBlockCells
+    }
+    
 }
 
 const insertIntoArray = (childArr, parrentArr, row, col, clearMode) => {
