@@ -97,11 +97,34 @@ const timeToMoveDown = 500;
 let prevPosition = { x: 0, y: 0};
 let prevBlockCells = [[]];
 
-class  Block {
+class Block {
     constructor(cells, x, y) {
         this.cells = cells
         this.position = {x, y}
         this.isAlive = true
+    }
+
+    moveBlockByEvent(e){
+        switch(e.key){
+            case 'ArrowLeft': {
+                this.position.x--
+                break
+            }
+            case 'ArrowRight': {
+                this.position.x++
+                break
+            }
+            case 'ArrowDown': {
+                if (this.position.y + this.cells.length < numberOfRows){
+                    this.position.y++;
+                }
+                break
+            }
+            case 'ArrowUp': {
+                // this.position.x--
+                break
+            }
+        }
     }
 
     findCollison(field){
