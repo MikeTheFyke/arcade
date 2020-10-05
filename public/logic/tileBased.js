@@ -42,7 +42,7 @@ function Sprite(data){
             }
         }
     }
-    this. frames = data;
+    this.frames = data;
 }
 
 Sprite.prototype.draw = function(t, x, y){

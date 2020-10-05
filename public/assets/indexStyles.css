@@ -17,9 +17,10 @@ overflow: hidden;
 position:Absolute;
 top: 0px;
 left: 0px;
-width: 100px;
-height: 250px;
+width: 125px;
+height: 300px;
 overflow: hidden;
+z-index: 1;
 }
 
 #arcadeHeader #myLinks {
