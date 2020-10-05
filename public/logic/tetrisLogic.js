@@ -75,6 +75,9 @@ const blockTypes = {
 const fps = 24;
 const counterOfF = 0;
 const prevTime = 0;
+const timeToMoveDown = 500;
+
+const prevPosition = { x: 0, y: 0};
 
 class  Block {
     constructor(cells, x, y) {
@@ -90,14 +93,44 @@ const render = (game, block, time) => {
         const blockType  = arrOfTypes[arrOfTypes.length * Math.random() | 0]
         const x          = ((numberOfCols - blockType.length) /2) | 0
         block = new Block(blockType, x, 0)
+        prevPosition = { x, y: 0}
     }
     const { ctx, field } = game
     const { position } = block
 
     if (time - prevTime > 1000 / fps){
         counterOfF++
+        if (counterOfF === (fps * timeToMoveDown) / 1000){
+            counterOfF = 0
+            if (block && block.alive){
+                position.y++ ;
+            } else {
+                block = null;
+            }
+        }
     }
+    prevTime = time;
+
+    insertIntoArray(prevBlockCells, field, prevPosition.y, prevPosition.x, true);
 }
+
+const insertIntoArray = (childArr, parrentArr, row, col, clearMode) => {
+    let i = 0;
+    while (i < childArr.length){
+        let j = 0;
+            while (j < childArr[i].length){
+                parrentArr[row + i][col + j] = !clearMode
+                ? childArr[i][j]
+                ? childArr[i][j]
+                : parrentArr[row + i][col + j]
+                : childArr[i][j]
+                ? 0
+                : parrentArr[row + i][col + j]
+            j++;
+            }
+    i++;
+    }
+};
 
 const generateField = (rows, cols) => {
     const field = Array.from({length: rows},
