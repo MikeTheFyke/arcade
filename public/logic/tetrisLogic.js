@@ -167,6 +167,11 @@ const checkCanMove = (block, field) => {
     return true;
 }
 
+const updateScore = (score) => {
+    const scoreElement = document.getElementById('score')
+    scoreElement.innerHTML = score;
+}
+
 const render = (game, block, time) => {
     if (!block) {
         const arrOfTypes = Object.values(blockTypes)
