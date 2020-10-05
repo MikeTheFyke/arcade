@@ -152,8 +152,18 @@ class Block {
     }
 }
 
-const checkCanMove = () => {
-    return true;
+const checkCanMove = (block, field) => {
+    const { cells, position } = block;
+    const { x, y } = position;
+    return !cells.some((rows, i) => {
+        return rows.some((cells, j) => {
+            if (
+                (cell && x + j < 0) ||
+                (cell && x + j >= numberOfCols) ||
+                (cell && field[y + i][x+ j])
+            ) return true;
+        })
+    })
 }
 
 const render = (game, block, time) => {
