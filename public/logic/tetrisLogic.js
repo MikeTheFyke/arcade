@@ -105,6 +105,7 @@ class Block {
     }
 
     moveBlockByEvent(e){
+        e.preventDefault();
         switch(e.key){
             case 'ArrowLeft': {
                 this.position.x--
@@ -152,6 +153,7 @@ const render = (game, block, time) => {
         block = new Block(blockType, x, 0)
         prevPosition = { x, y: 0}
         addEventListener('keydown', (e) => block.moveBlockByEvent.bind(block)(e))
+        
     }
     const { ctx, field } = game
     const { position } = block
