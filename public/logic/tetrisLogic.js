@@ -73,11 +73,12 @@ const blockTypes = {
 }
 
 const fps = 24;
-const counterOfF = 0;
-const prevTime = 0;
+let counterOfF = 0;
+let prevTime = 0;
 const timeToMoveDown = 500;
 
-const prevPosition = { x: 0, y: 0};
+let prevPosition = { x: 0, y: 0};
+let prevBlockCells = [[]];
 
 class  Block {
     constructor(cells, x, y) {
@@ -85,6 +86,10 @@ class  Block {
         this.position = {x, y}
         this.isAlive = true
     }
+}
+
+const checkCanMove = () => {
+    return true;
 }
 
 const render = (game, block, time) => {
@@ -118,7 +123,7 @@ const render = (game, block, time) => {
         position.x = prevPosition.x
         block.cells = prevBlockCells
     }
-    
+
 }
 
 const insertIntoArray = (childArr, parrentArr, row, col, clearMode) => {
