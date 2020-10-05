@@ -10,6 +10,18 @@ const numberOfCols = 10;
 const cellSize = canvasWidth / numberOfCols;
 const borderSize = 0.2;
 
+const zType = [
+    [1, 1, 0],
+    [0, 1, 1],
+    [0, 0, 0]
+]
+
+const sType = [
+    [0, 2, 2],
+    [2, 2, 0],
+    [0, 0, 0]
+]
+
 class  Block {
     constructor(cells, x, y) {
         this.cells = cells
