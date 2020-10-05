@@ -52,6 +52,16 @@ const tType = [
     [0, 0, 0]
 ]
 
+const blockTypes = {
+    zType,
+    sType,
+    iType,
+    lType,
+    jType,
+    oType,
+    tType
+}
+
 class  Block {
     constructor(cells, x, y) {
         this.cells = cells
