@@ -174,6 +174,12 @@ app.get("/tetris", (req, res) => {
     res.render("tetris");
 });
 
+/// gsap Pong Canvas Route
+app.get("/gsapPong", (req, res) => {
+    res.render("gsapPong");
+});
+
+
 app.get("/zone00.json", (req, res) => {
     res.json(zone00);
 });
